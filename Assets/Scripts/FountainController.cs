@@ -28,7 +28,7 @@ public class FountainController : MonoBehaviour
         ++activeCoroutines;
         animator.SetBool("HasGem", true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(Constants.Cooldown.fountain);
 
         Vector3 newPosition = GenerateRandomPosition();
         int randomId = Random.Range(0, gems.Length);

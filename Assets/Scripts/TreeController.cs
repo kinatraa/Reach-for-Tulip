@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class TreeController : MonoBehaviour
@@ -39,7 +40,7 @@ public class TreeController : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(Constants.Cooldown.tree);
             hasFruit = true;
             animator.SetBool("HasFruit", true);
         }

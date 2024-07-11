@@ -73,4 +73,9 @@ public class ChompController : MonoBehaviour
     {
         rangeObject.SetActive(false);
     }
+    
+    // private void OnPointerEnter()
+    // {
+    //     Debug.Log("Hello");
+    // }
 }
