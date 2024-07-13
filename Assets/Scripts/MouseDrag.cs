@@ -10,6 +10,7 @@ public class MouseDrag : MonoBehaviour
     private bool isDragging = false;
     private DinoController dinoController;
     private TreeController treeController;
+    private FinnController finnController;
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
@@ -18,6 +19,7 @@ public class MouseDrag : MonoBehaviour
     {
         dinoController = GetComponent<DinoController>();
         treeController = GetComponent<TreeController>();
+        finnController = GetComponent<FinnController>();
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
@@ -64,6 +66,10 @@ public class MouseDrag : MonoBehaviour
             {
                 treeController.SetInteraction(true);
             }
+            if (finnController != null)
+            {
+                finnController.SetDrag(true);
+            }
         }
         /*else if (Input.GetMouseButtonDown(1))
         {
@@ -102,6 +108,10 @@ public class MouseDrag : MonoBehaviour
                 Destroy(gameObject);
             }
             
+        }
+        if(finnController != null)
+        {
+            finnController.SetDrag(false);
         }
     }
 }

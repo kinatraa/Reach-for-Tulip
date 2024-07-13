@@ -8,6 +8,8 @@ public class ButtonManager : MonoBehaviour
     public DinoManager dinoManager;
     public TreeController treeController;
     public ChompController chompController;
+    public GramophoneController gramophoneController;
+    public FinnController finnController;
 
     public void BuyDino()
     {
@@ -22,5 +24,15 @@ public class ButtonManager : MonoBehaviour
     public void BuyChomp()
     {
         chompController.BuyChomp();
+    }
+
+    public void BuyGramophone()
+    {
+        gramophoneController.BuyGramophone();
+    }
+
+    public void BuyFinn()
+    {
+        finnController.BuyFinn();
     }
 }
