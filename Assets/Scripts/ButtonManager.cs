@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -34,5 +35,17 @@ public class ButtonManager : MonoBehaviour
     public void BuyFinn()
     {
         finnController.BuyFinn();
+    }
+
+    public void InfoDisplay(GameObject button)
+    {
+        string name = button.name;
+        if (name == "Chomp")
+        {
+            Transform info = button.transform.Find("Info");
+            TextMeshProUGUI text = info.gameObject.GetComponent<TextMeshProUGUI>();
+            text.text = Constants.Cost.chomp.ToString();
+            info.gameObject.SetActive(true);
+        }
     }
 }

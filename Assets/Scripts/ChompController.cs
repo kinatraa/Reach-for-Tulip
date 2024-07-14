@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ChompController : MonoBehaviour
 {
@@ -73,9 +74,9 @@ public class ChompController : MonoBehaviour
     {
         rangeObject.SetActive(false);
     }
-    
-    // private void OnPointerEnter()
-    // {
-    //     Debug.Log("Hello");
-    // }
+
+    public void InfoDisplay()
+    {
+        Debug.Log("OnPointerEnter method called!");
+    }
 }
