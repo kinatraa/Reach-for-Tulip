@@ -8,6 +8,7 @@ public class MouseDrag : MonoBehaviour
     private float startPosX, startPosY;
     private Vector3 mousePos;
     private bool isDragging = false;
+    private static bool isDraggingStatic = false;
     private DinoController dinoController;
     private TreeController treeController;
     private FinnController finnController;
@@ -58,6 +59,7 @@ public class MouseDrag : MonoBehaviour
             startPosX = mousePos.x - this.transform.position.x;
             startPosY = mousePos.y - this.transform.position.y;
             isDragging = true;
+            isDraggingStatic = true;
             if (dinoController != null)
             {
                 dinoController.IsDragged(true);
@@ -87,6 +89,7 @@ public class MouseDrag : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
+        isDraggingStatic = false;
         if (dinoController != null)
         {
             dinoController.IsDragged(false);
@@ -95,23 +98,35 @@ public class MouseDrag : MonoBehaviour
         {
             treeController.SetInteraction(false);
         }
-        if(this.gameObject.transform.position.y <= -2.5f)
+        if (this.gameObject.transform.position.y <= -2.2f)
         {
-            if (this.gameObject.CompareTag("Fountain"))
-            {
-                Vector3 newPosition = this.gameObject.transform.position;
-                newPosition.y = 0;
-                this.gameObject.transform.position = newPosition;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            
+            SellItem();
         }
-        if(finnController != null)
+        if (finnController != null)
         {
             finnController.SetDrag(false);
         }
+    }
+
+    private void SellItem()
+    {
+        if (gameObject.CompareTag("Dino"))
+        {
+            PlayerManager.money += Constants.Value.GetValue("Dino");
+        }
+        else if (gameObject.CompareTag("Gem"))
+        {
+            PlayerManager.money += Constants.Value.GetValue("Gem");
+        }
+        else
+        {
+            PlayerManager.money += Constants.Value.GetValue(gameObject.name);
+        }
+        Destroy(gameObject);
+    }
+
+    public static bool IsDragging()
+    {
+        return isDraggingStatic;
     }
 }

@@ -11,6 +11,16 @@ public class ButtonManager : MonoBehaviour
     public ChompController chompController;
     public GramophoneController gramophoneController;
     public FinnController finnController;
+    public WitchController witchController;
+    public FountainController fountainController;
+
+    private Transform infoText;
+    private Transform descriptionText;
+
+    void Start() {
+        infoText = transform.Find("Info");
+        descriptionText = transform.Find("Description");
+    }
 
     public void BuyDino()
     {
@@ -37,15 +47,40 @@ public class ButtonManager : MonoBehaviour
         finnController.BuyFinn();
     }
 
+    public void BuyWitch()
+    {
+        witchController.BuyWitch();
+    }
+
+    public void BuyFountain(){
+        fountainController.BuyFountain();
+    }
+
     public void InfoDisplay(GameObject button)
     {
+        if(MouseDrag.IsDragging()) return;
+
         string name = button.name;
-        if (name == "Chomp")
-        {
-            Transform info = button.transform.Find("Info");
-            TextMeshProUGUI text = info.gameObject.GetComponent<TextMeshProUGUI>();
-            text.text = Constants.Cost.chomp.ToString();
-            info.gameObject.SetActive(true);
-        }
+        TextMeshProUGUI info = infoText.gameObject.GetComponent<TextMeshProUGUI>();
+        info.text = name + " " + Constants.Cost.GetCost(name);
+        TextMeshProUGUI description = descriptionText.gameObject.GetComponent<TextMeshProUGUI>();
+        description.text = Constants.Description.GetDescription(name);
+
+        Vector3 newPosition = button.transform.position;
+        newPosition.y += 100;
+        infoText.position = newPosition;
+        newPosition.y -= 200;
+        descriptionText.position = newPosition;
+
+        infoText.gameObject.SetActive(true);
+        descriptionText.gameObject.SetActive(true);
+    }
+
+    public void TurnOffInfoDisplay()
+    {
+        if(MouseDrag.IsDragging()) return;
+
+        infoText.gameObject.SetActive(false);
+        descriptionText.gameObject.SetActive(false);
     }
 }

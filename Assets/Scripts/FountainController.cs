@@ -5,7 +5,6 @@ using UnityEngine;
 public class FountainController : MonoBehaviour
 {
     public GameObject[] gems;
-
     private Animator animator;
     private int activeCoroutines = 0;
     private float dropRadius = 1.2f;
@@ -55,5 +54,16 @@ public class FountainController : MonoBehaviour
         Vector3 newPosition = new Vector3(fountainPosition.x + offsetX, fountainPosition.y + offsetY, fountainPosition.z);
 
         return newPosition;
+    }
+
+    
+    public void BuyFountain()
+    {
+        Vector3 newPosition = new Vector3(7, -1, 0);
+
+        GameObject parent = GameObject.Find("WaterFountain");
+
+        GameObject newWitch = Instantiate(this.gameObject, newPosition, this.gameObject.transform.rotation);
+        newWitch.transform.SetParent(parent.transform, true);
     }
 }
