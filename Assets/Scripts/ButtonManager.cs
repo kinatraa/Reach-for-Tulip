@@ -17,6 +17,8 @@ public class ButtonManager : MonoBehaviour
     private Transform infoText;
     private Transform descriptionText;
 
+    private bool switchAlbumButton = true;
+
     void Start() {
         infoText = transform.Find("Info");
         descriptionText = transform.Find("Description");
@@ -54,6 +56,12 @@ public class ButtonManager : MonoBehaviour
 
     public void BuyFountain(){
         fountainController.BuyFountain();
+    }
+
+    public void OpenAlbum(GameObject page)
+    {
+        page.SetActive(switchAlbumButton);
+        switchAlbumButton = !switchAlbumButton;
     }
 
     public void InfoDisplay(GameObject button)
