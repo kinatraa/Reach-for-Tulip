@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MouseDrag : MonoBehaviour
 {
     private float startPosX, startPosY;
@@ -15,6 +17,10 @@ public class MouseDrag : MonoBehaviour
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
+
+    private GameObject hintText;
+    private RaycastHit2D hit;
+    private bool isHitted = false;
 
     void Start()
     {
@@ -35,6 +41,8 @@ public class MouseDrag : MonoBehaviour
             objectWidth = 0.5f;
             objectHeight = 0.5f;
         }
+
+        GetHintTextObject();
     }
 
     void Update()
@@ -48,6 +56,10 @@ public class MouseDrag : MonoBehaviour
             newPosition.y = Mathf.Clamp(newPosition.y, -screenBounds.y + objectHeight, screenBounds.y - objectHeight);
 
             this.gameObject.transform.position = newPosition;
+        }
+        if (isHitted && hit.collider != null)
+        {
+            ShowHint();
         }
     }
 
@@ -72,18 +84,59 @@ public class MouseDrag : MonoBehaviour
             {
                 finnController.SetDrag(true);
             }
+
+            CheckHit();
         }
-        /*else if (Input.GetMouseButtonDown(1))
+    }
+
+    private void GetHintTextObject()
+    {
+        Transform[] allChildren = FindRootGameObject("UI").transform.Find("Text").GetComponentsInChildren<Transform>(true);
+        foreach (Transform child in allChildren)
         {
-            Debug.Log("right");
-            if (!this.gameObject.CompareTag("Fountain"))
+            if (child.name == "Hint")
             {
-                mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                startPosX = mousePos.x - this.transform.position.x;
-                startPosY = mousePos.y - this.transform.position.y;
-                Destroy(gameObject);
+                hintText = child.gameObject;
+                break;
             }
-        }*/
+        }
+    }
+
+    private GameObject FindRootGameObject(string name)
+    {
+        GameObject[] rootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject obj in rootObjects)
+        {
+            if (obj.name == name)
+            {
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    private void CheckHit()
+    {
+        Vector2 rayPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        hit = Physics2D.Raycast(rayPos, Vector2.zero);
+
+        if (hit.collider != null)
+        {
+            isHitted = true;
+        }
+    }
+
+    private void ShowHint()
+    {
+        Vector3 worldPosition = hit.collider.bounds.center;
+        worldPosition.y += hit.collider.bounds.extents.y + 0.2f;
+
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
+        hintText.transform.position = screenPosition;
+
+        hintText.GetComponent<TextMeshProUGUI>().text = "hello\nhello\nhello";
+
+        hintText.SetActive(true);
     }
 
     private void OnMouseUp()
@@ -98,13 +151,19 @@ public class MouseDrag : MonoBehaviour
         {
             treeController.SetInteraction(false);
         }
-        if (this.gameObject.transform.position.y <= -2.2f)
-        {
-            SellItem();
-        }
         if (finnController != null)
         {
             finnController.SetDrag(false);
+        }
+        if (isHitted)
+        {
+            isHitted = false;
+            hintText.SetActive(false);
+        }
+
+        if (this.gameObject.transform.position.y <= -2.2f)
+        {
+            SellItem();
         }
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public static class Constants
@@ -106,5 +107,20 @@ public static class Constants
             }
             return "";
         }
+    }
+
+    public static class Hint{
+        public const string tree = "shake me";
+        public const string dino = "feed me";
+        public const string fruit = "eatable";
+        public const string basicGem = "so f**king dirty";
+        public const string gem = "blink blink";
+        public const string chomp = "i love flower";
+        public const string finn = "i'm hungry";
+        public const string flower = "flowererererer";
+        public const string blueFlame = "&^#@&#*1&^()";
+        public const string disc = "mysterious disc";
+        public const string witch = "two gems and a blue flame";
+        public const string fountain = "make the gem shiny";
     }
 }
