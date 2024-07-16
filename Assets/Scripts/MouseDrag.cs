@@ -47,6 +47,7 @@ public class MouseDrag : MonoBehaviour
 
     void Update()
     {
+        /*Debug.Log(hit.collider);*/
         if (isDragging)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -104,7 +105,7 @@ public class MouseDrag : MonoBehaviour
 
     private GameObject FindRootGameObject(string name)
     {
-        GameObject[] rootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         foreach (GameObject obj in rootObjects)
         {
             if (obj.name == name)
@@ -134,12 +135,34 @@ public class MouseDrag : MonoBehaviour
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
         hintText.transform.position = screenPosition;
 
-        hintText.GetComponent<TextMeshProUGUI>().text = "hello\nhello\nhello";
+        TextMeshProUGUI text = hintText.GetComponent<TextMeshProUGUI>();
+
+        text.text = CheckText(hit.collider.gameObject);
 
         hintText.SetActive(true);
     }
 
-    private void OnMouseUp()
+    private string CheckText(GameObject obj)
+    {
+        if (obj.CompareTag("Dino"))
+        {
+            return Constants.Hint.GetHint("Dino");
+        }
+        else if (obj.CompareTag("Gem"))
+        {
+            return Constants.Hint.GetHint("Gem");
+        }
+        else if (obj.CompareTag("Disc"))
+        {
+            return Constants.Hint.GetHint("Disc");
+        }
+        else
+        {
+            return Constants.Hint.GetHint(obj.name);
+        }
+    }
+
+    public void OnMouseUp()
     {
         isDragging = false;
         isDraggingStatic = false;

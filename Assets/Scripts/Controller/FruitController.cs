@@ -14,9 +14,12 @@ public class FruitController : MonoBehaviour
                 if (!dino.IsEating())
                 {
                     dino.EatFruit();
+                    MouseDrag mouseInput = GetComponent<MouseDrag>();
+                    mouseInput.OnMouseUp();
                     Destroy(gameObject);
                 }
             }
         }
     }
+
 }

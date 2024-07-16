@@ -120,7 +120,43 @@ public static class Constants
         public const string flower = "flowererererer";
         public const string blueFlame = "&^#@&#*1&^()";
         public const string disc = "mysterious disc";
+        public const string gramophone = "you wanna play music?";
         public const string witch = "two gems and a blue flame";
         public const string fountain = "make the gem shiny";
+
+        public static string GetHint(string name)
+        {
+            switch (name)
+            {
+                case "Dino":
+                    return dino;
+                case "Tree(Clone)":
+                    return tree;
+                case "Fruit(Clone)":
+                    return fruit;
+                case "basic gem(Clone)":
+                    return basicGem;
+                case "Gem":
+                    return gem;
+                case "Chomp(Clone)":
+                    return chomp;
+                case "Finn(Clone)":
+                    return finn;
+                case "PinkFlower(Clone)":
+                    return flower;
+                case "flame(Clone)":
+                    return blueFlame;
+                case "Disc":
+                    return disc;
+                case "Witch(Clone)":
+                    return witch;
+                case "Gramophone(Clone)":
+                    return gramophone;
+                case "WaterFountain(Clone)":
+                    return fountain;
+
+            }
+            return "";
+        }
     }
 }

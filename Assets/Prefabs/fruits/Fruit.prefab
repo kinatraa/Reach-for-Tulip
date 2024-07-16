@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3710658414871141195}
   - component: {fileID: 8407867561572627769}
   m_Layer: 0
-  m_Name: acquy
+  m_Name: Fruit
   m_TagString: Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,6 +11,7 @@ public class ChompController : MonoBehaviour
     private float range;
     private int cntFruit = 0;
     private bool isTired = false;
+    private GameObject pinkFlower = null;
 
     void Start()
     {
@@ -75,17 +76,13 @@ public class ChompController : MonoBehaviour
         rangeObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ResetChomp()
     {
-        if (collision.name == "PinkFlower(Clone)")
+        cntFruit = 0;
+        if (isTired)
         {
-            if (isTired)
-            {
-                SetTired(false);
-                animator.SetBool("IsTired", isTired);
-            }
-            cntFruit = 0;
-            Destroy(collision.gameObject);
+            isTired = false;
+            animator.SetBool("IsTired", isTired);
         }
     }
 }

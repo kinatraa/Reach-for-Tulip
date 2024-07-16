@@ -11,6 +11,9 @@ TagManager:
   - Fountain
   - Chomp
   - Disc
+  - Witch
+  - Gramophone
+  - Finn
   layers:
   - Default
   - TransparentFX

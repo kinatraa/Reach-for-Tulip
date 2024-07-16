@@ -7,15 +7,16 @@ public class BasicGemController : MonoBehaviour
     private FountainController fountainController;
     private bool isInFountain = false;
 
-    void Start()
+    /*void Start()
     {
         fountainController = FindObjectOfType<FountainController>();
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Fountain"))
         {
+            fountainController = collision.gameObject.GetComponent<FountainController>();
             isInFountain = true;
         }
     }
