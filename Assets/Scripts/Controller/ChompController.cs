@@ -11,7 +11,6 @@ public class ChompController : MonoBehaviour
     private float range;
     private int cntFruit = 0;
     private bool isTired = false;
-    private GameObject pinkFlower = null;
 
     void Start()
     {

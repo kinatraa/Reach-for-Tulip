@@ -27,7 +27,7 @@ public class FlowerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.name == "PinkFlower(Clone)")
+        if (collision.CompareTag("Chomp"))
         {
             chompController = null;
             inChomp = false;

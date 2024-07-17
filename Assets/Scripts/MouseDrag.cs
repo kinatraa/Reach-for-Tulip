@@ -22,11 +22,17 @@ public class MouseDrag : MonoBehaviour
     private RaycastHit2D hit;
     private bool isHitted = false;
 
+    private SpriteRenderer spriteRenderer;
+    private int lastOrder = 0;
+
     void Start()
     {
         dinoController = GetComponent<DinoController>();
         treeController = GetComponent<TreeController>();
         finnController = GetComponent<FinnController>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        lastOrder = spriteRenderer.sortingOrder;
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
@@ -68,6 +74,8 @@ public class MouseDrag : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            spriteRenderer.sortingOrder = 1000;
+
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             startPosX = mousePos.x - this.transform.position.x;
             startPosY = mousePos.y - this.transform.position.y;
@@ -92,7 +100,7 @@ public class MouseDrag : MonoBehaviour
 
     private void GetHintTextObject()
     {
-        Transform[] allChildren = FindRootGameObject("UI").transform.Find("Text").GetComponentsInChildren<Transform>(true);
+        Transform[] allChildren = GameMethods.FindRootGameObject("UI").transform.Find("Text").GetComponentsInChildren<Transform>(true);
         foreach (Transform child in allChildren)
         {
             if (child.name == "Hint")
@@ -101,19 +109,6 @@ public class MouseDrag : MonoBehaviour
                 break;
             }
         }
-    }
-
-    private GameObject FindRootGameObject(string name)
-    {
-        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-        foreach (GameObject obj in rootObjects)
-        {
-            if (obj.name == name)
-            {
-                return obj;
-            }
-        }
-        return null;
     }
 
     private void CheckHit()
@@ -164,6 +159,7 @@ public class MouseDrag : MonoBehaviour
 
     public void OnMouseUp()
     {
+        spriteRenderer.sortingOrder = lastOrder;
         isDragging = false;
         isDraggingStatic = false;
         if (dinoController != null)

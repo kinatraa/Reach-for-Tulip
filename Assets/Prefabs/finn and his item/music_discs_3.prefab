@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7180544954272272459}
   - component: {fileID: 5640359601052425651}
   - component: {fileID: 764415331073600417}
+  - component: {fileID: -3001772026224215541}
   m_Layer: 0
   m_Name: music_discs_3
   m_TagString: Disc
@@ -183,3 +184,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0033da02d9d554d99ca2de401dd126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3001772026224215541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356234050108922847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f3aa6dd38455a4ebc80fb3c79453f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
