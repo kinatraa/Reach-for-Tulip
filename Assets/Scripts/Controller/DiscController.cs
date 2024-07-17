@@ -8,23 +8,34 @@ using UnityEngine.UI;
 public class DiscController : MonoBehaviour
 {
     private AlbumController albumController;
+    private bool collideAlbum = false;
     private bool inAlbum = false;
-    private GameObject parent;
+    private GameObject albumObject;
+    private GameObject finnObject;
 
     void Start()
     {
-        parent = GameMethods.FindRootGameObject("Album").transform.Find("openbook").gameObject;
+        finnObject = this.transform.parent.gameObject;
+        albumObject = GameMethods.FindRootGameObject("Album").transform.Find("openbook").gameObject;
+    }
+
+    private void OnMouseDown()
+    {
+        if (inAlbum)
+        {
+            albumController.TakeDisc(this.gameObject);
+            this.transform.SetParent(finnObject.transform, true);
+            inAlbum = false;
+        }
     }
 
     private void OnMouseUp()
     {
-        if (inAlbum == true)
+        if (collideAlbum == true)
         {
-            string name = this.name;
-            name = name.Substring(12);
-            name = name.Substring(0, name.Length - 7);
-            albumController.FillDisc(int.Parse(name) - 1);
-            this.transform.SetParent(parent.transform, true);
+            this.transform.SetParent(albumObject.transform, true);
+            albumController.FillDisc(this.gameObject);
+            inAlbum = true;
         }
     }
 
@@ -33,7 +44,7 @@ public class DiscController : MonoBehaviour
         if (collision.name == "Album")
         {
             albumController = collision.GetComponent<AlbumController>();
-            inAlbum = true;
+            collideAlbum = true;
         }
     }
 
@@ -41,8 +52,7 @@ public class DiscController : MonoBehaviour
     {
         if (collision.name == "Album")
         {
-            albumController = null;
-            inAlbum = false;
+            collideAlbum = false;
         }
     }
 }

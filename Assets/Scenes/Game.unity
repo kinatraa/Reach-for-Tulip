@@ -1183,17 +1183,17 @@ MonoBehaviour:
   - {fileID: -1613655751, guid: 3eb7a99c0c4684c48824c119379cff81, type: 3}
   - {fileID: -146779899, guid: 3eb7a99c0c4684c48824c119379cff81, type: 3}
   - {fileID: -763680841, guid: 3eb7a99c0c4684c48824c119379cff81, type: 3}
-  spriteRenderers:
-  - {fileID: 407655500}
-  - {fileID: 1656541205}
-  - {fileID: 652942514}
-  - {fileID: 1719765650}
-  - {fileID: 756740638}
-  - {fileID: 386560807}
-  - {fileID: 94941250}
-  - {fileID: 238595348}
-  - {fileID: 933343587}
-  - {fileID: 1567222565}
+  discSlots:
+  - {fileID: 407655498}
+  - {fileID: 1656541203}
+  - {fileID: 652942512}
+  - {fileID: 1719765648}
+  - {fileID: 756740636}
+  - {fileID: 386560805}
+  - {fileID: 94941248}
+  - {fileID: 238595346}
+  - {fileID: 933343585}
+  - {fileID: 1567222563}
   page: {fileID: 1928567001}
 --- !u!212 &882918355
 SpriteRenderer:
