@@ -20,10 +20,11 @@ public class FinnController : MonoBehaviour
     private Collider2D coll;
     private Vector3 newPosition;
     private GameObject parentObject;
+    private int ateFruits = 0;
 
     void Start()
     {
-        if(parentObject == null)
+        if (parentObject == null)
         {
             parentObject = GameObject.Find("Finn and his items");
         }
@@ -32,65 +33,126 @@ public class FinnController : MonoBehaviour
         lastX = transform.position.x;
         screenLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 1;
         screenRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 1;
+    }
+
+    void Update()
+    {
+        if (isDragging)
+        {
+            lastX = transform.position.x;
+        }
+    }
+
+    public void LetsGoFinn()
+    {
         StartCoroutine(FinnMovement());
+        ateFruits = 0;
     }
 
     private IEnumerator FinnMovement()
     {
-        yield return new WaitForSeconds(3f);
-        while (true)
+        isMoving = true;
+        animator.SetBool("IsMoving", isMoving);
+
+        while (isMoving)
         {
-            if(lastX - transform.position.x <= 0.1 && hasItem)
-            {
-                coll.enabled = true;
-                isMoving = false;
-                animator.SetBool("IsMoving", isMoving);
-                animator.SetBool("IsCheering", true);
-                yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("cheer"));
-                DropItem();
-                yield return new WaitForSeconds(2f);
-                animator.SetBool("IsCheering", false);
-                yield return new WaitForSeconds(1f);
-                lastX = transform.position.x;
-                hasItem = false;
-                while (isDragging)
-                {
-                    lastX = transform.position.x;
-                    yield return null;
-                }
-            }
-
-            while (isDragging)
+            if (lastX - transform.position.x <= 0.1 && hasItem)
             {
                 isMoving = false;
-                animator.SetBool("IsMoving", isMoving);
-                yield return null;
+                break;
             }
-            
-            isMoving = true;
 
-            if (isMoving)
+            coll.enabled = false;
+            newPosition = transform.position;
+            newPosition.x += speed * Time.deltaTime;
+
+            if (newPosition.x > screenRight)
             {
-                coll.enabled = false;
-                newPosition = transform.position;
-                newPosition.x += speed * Time.deltaTime;
-
-                if (newPosition.x > screenRight)
-                {
-                    yield return new WaitForSeconds(5f);
-                    newPosition.x = screenLeft;
-                    hasItem = true;
-                }
-
-                transform.position = newPosition;
-
-                animator.SetBool("IsMoving", isMoving);
-                yield return null;
+                yield return new WaitForSeconds(5f);
+                newPosition.x = screenLeft;
+                hasItem = true;
             }
 
+            transform.position = newPosition;
+            // Debug.Log("Finn new position: " + newPosition);
+            yield return null;
             yield return null;
         }
+
+        coll.enabled = true;
+        animator.SetBool("IsMoving", isMoving);
+        animator.SetBool("IsCheering", true);
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("cheer"));
+        DropItem();
+        yield return new WaitForSeconds(2f);
+        animator.SetBool("IsCheering", false);
+        lastX = transform.position.x;
+        hasItem = false;
+
+        yield return null;
     }
+
+    // private IEnumerator FinnMovement()
+    // {
+    //     // yield return new WaitForSeconds(3f);
+    //     // while (true)
+    //     // {
+    //         // while(ateFruits < 2){
+    //         //     yield return null;
+    //         // }
+    //         // ateFruits = 0;
+
+    //         if(lastX - transform.position.x <= 0.1 && hasItem)
+    //         {
+    //             coll.enabled = true;
+    //             isMoving = false;
+    //             animator.SetBool("IsMoving", isMoving);
+    //             animator.SetBool("IsCheering", true);
+    //             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("cheer"));
+    //             DropItem();
+    //             yield return new WaitForSeconds(2f);
+    //             animator.SetBool("IsCheering", false);
+    //             yield return new WaitForSeconds(1f);
+    //             lastX = transform.position.x;
+    //             hasItem = false;
+    //             while (isDragging)
+    //             {
+    //                 lastX = transform.position.x;
+    //                 yield return null;
+    //             }
+    //         }
+
+    //         while (isDragging)
+    //         {
+    //             isMoving = false;
+    //             animator.SetBool("IsMoving", isMoving);
+    //             yield return null;
+    //         }
+
+    //         isMoving = true;
+
+    //         if (isMoving)
+    //         {
+    //             coll.enabled = false;
+    //             newPosition = transform.position;
+    //             newPosition.x += speed * Time.deltaTime;
+
+    //             if (newPosition.x > screenRight)
+    //             {
+    //                 yield return new WaitForSeconds(5f);
+    //                 newPosition.x = screenLeft;
+    //                 hasItem = true;
+    //             }
+
+    //             transform.position = newPosition;
+
+    //             animator.SetBool("IsMoving", isMoving);
+    //             yield return null;
+    //         }
+
+    //         yield return null;
+    //     // }
+    // }
 
     private void DropItem()
     {
@@ -100,12 +162,12 @@ public class FinnController : MonoBehaviour
 
         GameObject newItem = null;
         int randomNumber = Random.Range(0, 100);
-        
-        if(randomNumber >= 0 && randomNumber < 50)
+
+        if (randomNumber >= 0 && randomNumber < 50)
         {
             newItem = Instantiate(flower, newPosition, Quaternion.identity);
         }
-        else if(randomNumber >= 50 && randomNumber < 90)
+        else if (randomNumber >= 50 && randomNumber < 90)
         {
             newItem = Instantiate(flame, newPosition, Quaternion.identity);
         }
@@ -136,5 +198,16 @@ public class FinnController : MonoBehaviour
     public void SetDrag(bool check)
     {
         isDragging = check;
+    }
+
+    public int GetAteFruits()
+    {
+        return ateFruits;
+    }
+
+    public void EatFruit()
+    {
+        Debug.Log("eat");
+        ateFruits += 1;
     }
 }

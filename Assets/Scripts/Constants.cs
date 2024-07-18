@@ -75,6 +75,7 @@ public static class Constants
     {
         public const float tree = 10f;
         public const float dino = 5f;
+        public const float witch = 10f;
         public const float fountain = 5f;
     }
 

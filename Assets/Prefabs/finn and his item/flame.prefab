@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6464980374769433504}
   - component: {fileID: 4809461963518422399}
   - component: {fileID: 49500030019304013}
-  - component: {fileID: 7963413697300385130}
   - component: {fileID: 3251700975825560244}
+  - component: {fileID: 7963413697300385130}
+  - component: {fileID: 7077962676198044792}
   m_Layer: 0
   m_Name: flame
   m_TagString: Untagged
@@ -192,18 +193,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &7963413697300385130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701111845757113860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b0033da02d9d554d99ca2de401dd126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &3251700975825560244
 Animator:
   serializedVersion: 5
@@ -225,3 +214,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7963413697300385130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701111845757113860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0033da02d9d554d99ca2de401dd126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7077962676198044792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701111845757113860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ab0a9820c566a40a277ad61e9103b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

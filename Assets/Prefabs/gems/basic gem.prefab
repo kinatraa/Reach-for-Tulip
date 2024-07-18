@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8591866824091470976}
   - component: {fileID: 8166436072313970799}
   - component: {fileID: 2047843451662100243}
-  - component: {fileID: -4658952538977482645}
+  - component: {fileID: 4873181713127018697}
   m_Layer: 0
   m_Name: basic gem
   m_TagString: Untagged
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0033da02d9d554d99ca2de401dd126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-4658952538977482645
+--- !u!114 &4873181713127018697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,7 +171,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5196614776530911251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec7fee0e3e74ed4abd2d932907a2798, type: 3}
+  m_Script: {fileID: 11500000, guid: a3ab0a9820c566a40a277ad61e9103b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fountainController: {fileID: 639313396761098483, guid: a339ab905bf9fcd449c27d15252b9905, type: 3}
