@@ -14,11 +14,13 @@ TagManager:
   - Witch
   - Gramophone
   - Finn
+  - Orb
+  - Tulip
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Gramophone
   - Water
   - UI
   - 

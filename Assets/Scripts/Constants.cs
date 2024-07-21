@@ -14,6 +14,8 @@ public static class Constants
         public const int gramophone = 50;
         public const int witch = 50;
         public const int fountain = 100;
+        public const int tulip = 1000;
+        public const int magnet = 300;
 
         public static int GetCost(string name){
             switch(name){
@@ -31,6 +33,10 @@ public static class Constants
                     return witch;
                 case "Water Fountain":
                     return fountain;
+                case "Tulip":
+                    return tulip;
+                case "Magnet Shroom":
+                    return magnet;
             }
             return -1;
         }
@@ -74,9 +80,11 @@ public static class Constants
     public static class Cooldown
     {
         public const float tree = 10f;
-        public const float dino = 5f;
+        public static readonly KeyValuePair<float, float> dino = new KeyValuePair<float, float>(5f, 15f);
+        public static readonly KeyValuePair<float, float> finn = new KeyValuePair<float, float>(5f, 20f);
         public const float witch = 10f;
         public const float fountain = 5f;
+        public const float tulip = 15f;
     }
 
     public static class Description
@@ -88,6 +96,8 @@ public static class Constants
         public const string gramophone = "Music?!";
         public const string witch = "All the fish belong to me!";
         public const string fountain = "Make a wish and see your dreams come true!";
+        public const string tulip = "A seed!";
+        public const string magnet = "Attraction is my name!";
 
         public static string GetDescription(string name){
             switch(name){
@@ -105,6 +115,10 @@ public static class Constants
                     return witch;
                 case "Water Fountain":
                     return fountain;
+                case "Magnet Shroom":
+                    return magnet;
+                case "Tulip":
+                    return tulip;
             }
             return "";
         }
@@ -124,6 +138,10 @@ public static class Constants
         public const string gramophone = "you wanna play music?";
         public const string witch = "two gems and a blue flame";
         public const string fountain = "make the gem shiny";
+        public const string magnet = "give me something, i can pull it in";
+        public const string loveOrb = "love is forever...";
+        public static string tulip = "my love!";
+        public static string[] tulipHints = { "a seed", "do you love me?", "wait for me", "wait for me", "wait for me", "wait for me", "i love you" };
 
         public static string GetHint(string name)
         {
@@ -155,7 +173,12 @@ public static class Constants
                     return gramophone;
                 case "WaterFountain(Clone)":
                     return fountain;
-
+                case "Magnet(Clone)":
+                    return magnet;
+                case "Tulip(Clone)":
+                    return tulip;
+                case "Love Orb(Clone)":
+                    return loveOrb;
             }
             return "";
         }

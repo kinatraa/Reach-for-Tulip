@@ -37,9 +37,10 @@ public class DinoController : MonoBehaviour
                 yield return null;
             }
 
-            while (isEating)
+            if (isEating)
             {
-                yield return null;
+                yield return new WaitForSeconds(Random.Range(Constants.Cooldown.dino.Key, Constants.Cooldown.dino.Value));
+                ResetTrigger();
             }
 
             float randomX = Random.Range(limitX.Key, limitX.Value);

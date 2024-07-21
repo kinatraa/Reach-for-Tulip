@@ -23,17 +23,6 @@ public class AlbumController : MonoBehaviour
     void Update()
     {
         page.SetActive(toggleButton);
-        /*for(int i = 0; i < discSlots.Length; i++)
-        {
-            if (discIsFilled[i])
-            {
-                discSlots[i].sprite = discs[i];
-            }
-            else
-            {
-                discSlots[i].sprite = emptyDisc;
-            }
-        }*/
     }
 
     private void OnMouseDown() {

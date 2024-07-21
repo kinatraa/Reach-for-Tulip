@@ -74,7 +74,8 @@ public class MouseDrag : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            spriteRenderer.sortingOrder = 1000;
+            spriteRenderer.sortingOrder = 500;
+            SetSortingOrderForAllChildren(spriteRenderer.transform, 500);
 
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             startPosX = mousePos.x - this.transform.position.x;
@@ -95,6 +96,19 @@ public class MouseDrag : MonoBehaviour
             }
 
             CheckHit();
+        }
+    }
+
+    private void SetSortingOrderForAllChildren(Transform parent, int order)
+    {
+        foreach (Transform child in parent)
+        {
+            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.sortingOrder = order;
+            }
+            SetSortingOrderForAllChildren(child, order);
         }
     }
 

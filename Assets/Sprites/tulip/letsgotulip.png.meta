@@ -222,6 +222,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: letsgotulip_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3912b6aa814e98e43b8fcd79ff37485f
+      internalID: 504372527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -239,6 +260,7 @@ TextureImporter:
       letsgotulip_3: -698110341
       letsgotulip_4: 1206987825
       letsgotulip_5: 1244359504
+      letsgotulip_6: 504372527
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

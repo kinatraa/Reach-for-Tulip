@@ -60,7 +60,7 @@ public class InteractiveObject : MonoBehaviour
             else if (collision.CompareTag("Finn"))
             {
                 FinnController finn = collision.GetComponent<FinnController>();
-                if (finn.GetAteFruits() < 2)
+                if (finn.GetAteFruits() < 2 && finn.IsWaiting())
                 {
                     hasBeenEaten = true;
                     finn.EatFruit();
@@ -70,6 +70,20 @@ public class InteractiveObject : MonoBehaviour
                     {
                         finn.LetsGoFinn();
                     }
+                    Destroy(gameObject);
+                }
+            }
+        }
+        else if (this.CompareTag("Orb"))
+        {
+            if (collision.CompareTag("Tulip"))
+            {
+                TulipController tulip = collision.GetComponent<TulipController>();
+                if (!tulip.IsLoved())
+                {
+                    tulip.SetLove(true);
+                    MouseDrag mouseInput = GetComponent<MouseDrag>();
+                    mouseInput.OnMouseUp();
                     Destroy(gameObject);
                 }
             }

@@ -13,6 +13,8 @@ public class ButtonManager : MonoBehaviour
     public FinnController finnController;
     public WitchController witchController;
     public FountainController fountainController;
+    public TulipController tulipController;
+    public MagnetController magnetController;
 
     private Transform infoText;
     private Transform descriptionText;
@@ -54,6 +56,16 @@ public class ButtonManager : MonoBehaviour
 
     public void BuyFountain(){
         fountainController.BuyFountain();
+    }
+
+    public void BuyTulip()
+    {
+        tulipController.BuyTulip();
+    }
+
+    public void BuyMagnet()
+    {
+        magnetController.BuyMagnet();
     }
 
     public void InfoDisplay(GameObject button)

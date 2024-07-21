@@ -196,4 +196,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f3aa6dd38455a4ebc80fb3c79453f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  gramophoneObject: {fileID: 1598732749377040367, guid: 70063e838d634a24e9749b53f4e2d148, type: 3}

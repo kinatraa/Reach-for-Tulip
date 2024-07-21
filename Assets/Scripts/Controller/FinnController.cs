@@ -21,9 +21,16 @@ public class FinnController : MonoBehaviour
     private Vector3 newPosition;
     private GameObject parentObject;
     private int ateFruits = 0;
+    private bool isWaiting = true;
+    private List<int> discRemaining = new List<int>();
 
     void Start()
     {
+        for(int i = 0; i < musicDiscs.Length; i++)
+        {
+            discRemaining.Add(i);
+        }
+
         if (parentObject == null)
         {
             parentObject = GameObject.Find("Finn and his items");
@@ -51,6 +58,8 @@ public class FinnController : MonoBehaviour
 
     private IEnumerator FinnMovement()
     {
+        isWaiting = false;
+
         isMoving = true;
         animator.SetBool("IsMoving", isMoving);
 
@@ -68,7 +77,7 @@ public class FinnController : MonoBehaviour
 
             if (newPosition.x > screenRight)
             {
-                yield return new WaitForSeconds(5f);
+                yield return new WaitForSeconds(Random.Range(Constants.Cooldown.finn.Key, Constants.Cooldown.finn.Value));
                 newPosition.x = screenLeft;
                 hasItem = true;
             }
@@ -88,6 +97,8 @@ public class FinnController : MonoBehaviour
         animator.SetBool("IsCheering", false);
         lastX = transform.position.x;
         hasItem = false;
+
+        isWaiting = true;
 
         yield return null;
     }
@@ -161,7 +172,17 @@ public class FinnController : MonoBehaviour
         newPosition.y += 0.4f;
 
         GameObject newItem = null;
-        int randomNumber = Random.Range(0, 100);
+
+        int randomNumber;
+
+        if(discRemaining.Count > 0)
+        {
+            randomNumber = Random.Range(0, 100);
+        }
+        else
+        {
+            randomNumber = Random.Range(0, 90);
+        }
 
         if (randomNumber >= 0 && randomNumber < 50)
         {
@@ -173,8 +194,9 @@ public class FinnController : MonoBehaviour
         }
         else
         {
-            int randomId = Random.Range(0, 10);
-            newItem = Instantiate(musicDiscs[randomId], newPosition, Quaternion.identity);
+            int randomId = Random.Range(0, discRemaining.Count);
+            newItem = Instantiate(musicDiscs[discRemaining[randomId]], newPosition, Quaternion.identity);
+            discRemaining.RemoveAt(randomId);
         }
 
         newItem.transform.SetParent(parentObject.transform, true);
@@ -209,5 +231,10 @@ public class FinnController : MonoBehaviour
     {
         Debug.Log("eat");
         ateFruits += 1;
+    }
+
+    public bool IsWaiting()
+    {
+        return isWaiting;
     }
 }
