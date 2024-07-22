@@ -70,6 +70,18 @@ public class MouseDrag : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isDragging)
+        {
+            if (collision.CompareTag("Magnet"))
+            {
+                MagnetController magnet = collision.GetComponent<MagnetController>();
+                magnet.SetItem(this.gameObject);
+            }
+        }
+    }
+
     private void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
@@ -106,7 +118,7 @@ public class MouseDrag : MonoBehaviour
             SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
-                sr.sortingOrder = order;
+                sr.sortingOrder += order;
             }
             SetSortingOrderForAllChildren(child, order);
         }
@@ -174,6 +186,7 @@ public class MouseDrag : MonoBehaviour
     public void OnMouseUp()
     {
         spriteRenderer.sortingOrder = lastOrder;
+        SetSortingOrderForAllChildren(spriteRenderer.transform, lastOrder);
         isDragging = false;
         isDraggingStatic = false;
         if (dinoController != null)
