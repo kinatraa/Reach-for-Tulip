@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MagnetController : MonoBehaviour
@@ -7,26 +8,30 @@ public class MagnetController : MonoBehaviour
     public GameObject itemIcon;
 
 
-    private GameObject pulledItem;
-    private GameObject[] pulledItems;
-    private bool[] isMovingItems;
+    private string pulledItemTag = "";
+    private List<GameObject> pulledItems = new List<GameObject>();
+    private List<bool> isMoving = new List<bool>();
     private KeyValuePair<float, float> limitX = new KeyValuePair<float, float>(-8f, 8f), limitY = new KeyValuePair<float, float>(-1.6f, 4f);
     private float targetWidth = 5.0f;
     private float targetHeight = 5.0f;
 
     void Update()
     {
-        if (pulledItem != null)
+        if(pulledItemTag != "")
         {
+            FindTheSameItem(pulledItemTag);
             AttractItems(0.5f);
+            /*int cnt = pulledItems.Count(obj => obj == null);
+            Debug.Log(pulledItems.Count + " " + cnt);*/
         }
     }
 
     public void SetItem(GameObject item)
     {
-        pulledItem = item;
-        FindTheSameItem(item);
-        isMovingItems = new bool[pulledItems.Length];
+        pulledItemTag = item.tag;
+        pulledItems.Clear();
+        isMoving.Clear();
+        /*AttractItems(0.5f);*/
 
         SpriteRenderer iconSprite = itemIcon.GetComponent<SpriteRenderer>();
         SpriteRenderer itemSprite = item.GetComponent<SpriteRenderer>();
@@ -54,29 +59,60 @@ public class MagnetController : MonoBehaviour
         spriteRenderer.transform.localScale = newScale;
     }
 
-    private void FindTheSameItem(GameObject icon)
+    private void FindTheSameItem(string iconTag)
     {
-        pulledItems = GameObject.FindGameObjectsWithTag(icon.tag);
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag(iconTag);
+        foreach (GameObject item in allItems)
+        {
+            if (!pulledItems.Contains(item))
+            {
+                pulledItems.Add(item);
+                isMoving.Add(false);
+            }
+        }
     }
 
     public void AttractItems(float speed)
     {
-        for (int i = 0; i < pulledItems.Length; i++)
+        for (int i = 0; i < pulledItems.Count; i++)
         {
-            if(isMovingItems[i] == true){
-                
-            }
-            if (Vector3.Distance(pulledItems[i].transform.position, this.transform.position) > 1f)
+            if(pulledItems[i] != null)
             {
-                StartCoroutine(MoveTowards(pulledItems[i], this.transform.position, speed));
+                if(isMoving[i] == false)
+                {
+                    if(Vector3.Distance(pulledItems[i].transform.position, this.transform.position) > 1f)
+                    {
+                        isMoving[i] = true;
+                        StartCoroutine(MoveTowards(pulledItems[i], this.transform.position, speed));
+                    }
+                }
+                else
+                {
+                    if (Vector3.Distance(pulledItems[i].transform.position, this.transform.position) <= 1f)
+                    {
+                        isMoving[i] = false;
+                    }
+                }
             }
         }
     }
 
     private IEnumerator MoveTowards(GameObject item, Vector3 targetPosition, float speed)
     {
-        while (Vector3.Distance(item.transform.position, targetPosition) > 1f)
+        while (true)
         {
+            if(item == null)
+            {
+                yield break;
+            }
+            if(!item.CompareTag(pulledItemTag))
+            {
+                yield break;
+            }
+            if(Vector3.Distance(item.transform.position, targetPosition) <= 1f)
+            {
+                yield break;
+            }
             item.transform.position = Vector3.MoveTowards(item.transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
