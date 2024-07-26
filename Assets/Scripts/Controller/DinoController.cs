@@ -17,6 +17,7 @@ public class DinoController : MonoBehaviour
     private bool isMoving = false;
     private bool isEating = false;
     private bool isDragging = false;
+    private bool isPulling = false; 
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class DinoController : MonoBehaviour
     {
         while (true)
         {
-            while (isDragging)
+            while (isDragging || isPulling)
             {
                 isMoving = false;
                 animator.SetBool("IsMoving", isMoving);
@@ -56,7 +57,7 @@ public class DinoController : MonoBehaviour
             isMoving = true;
             animator.SetBool("IsMoving", isMoving);
 
-            while (Vector3.Distance(transform.position, targetPosition) > 0.1f && !isDragging && !isEating)
+            while (Vector3.Distance(transform.position, targetPosition) > 0.1f && !isDragging && !isEating && !isPulling)
             {
                 Vector3 moveDirection = (targetPosition - transform.position).normalized;
                 transform.position += moveDirection * moveSpeed * Time.deltaTime;
@@ -95,8 +96,13 @@ public class DinoController : MonoBehaviour
         dinoManager.DropGem(this.gameObject);
     }
 
-    public void IsDragged(bool check)
+    public void SetDrag(bool check)
     {
         isDragging = check;
+    }
+
+    public void SetPull(bool check)
+    {
+        isPulling = check;
     }
 }

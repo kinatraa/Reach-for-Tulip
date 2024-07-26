@@ -28,6 +28,18 @@ public class MagnetController : MonoBehaviour
 
     public void SetItem(GameObject item)
     {
+        if (item.CompareTag("Magnet"))
+        {
+            return;
+        }
+        if (pulledItemTag != "")
+        {
+            if (item.CompareTag(pulledItemTag))
+            {
+                return;
+            }
+        }
+        ResetPulledList();
         pulledItemTag = item.tag;
         pulledItems.Clear();
         isMoving.Clear();
@@ -67,6 +79,16 @@ public class MagnetController : MonoBehaviour
             if (!pulledItems.Contains(item))
             {
                 pulledItems.Add(item);
+                if (item.CompareTag("Dino"))
+                {
+                    DinoController dino = item.GetComponent<DinoController>();
+                    dino.SetPull(true);
+                }
+                else if (item.CompareTag("Finn"))
+                {
+                    FinnController fc = item.GetComponent<FinnController>();
+                    fc.SetPull(true);
+                }
                 isMoving.Add(false);
             }
         }
@@ -83,7 +105,7 @@ public class MagnetController : MonoBehaviour
                     if(Vector3.Distance(pulledItems[i].transform.position, this.transform.position) > 1f)
                     {
                         isMoving[i] = true;
-                        StartCoroutine(MoveTowards(pulledItems[i], this.transform.position, speed));
+                        StartCoroutine(MoveTowards(pulledItems[i], speed));
                     }
                 }
                 else
@@ -97,7 +119,7 @@ public class MagnetController : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveTowards(GameObject item, Vector3 targetPosition, float speed)
+    private IEnumerator MoveTowards(GameObject item, float speed)
     {
         while (true)
         {
@@ -109,11 +131,11 @@ public class MagnetController : MonoBehaviour
             {
                 yield break;
             }
-            if(Vector3.Distance(item.transform.position, targetPosition) <= 1f)
+            if(Vector3.Distance(item.transform.position, this.transform.position) <= 1f)
             {
                 yield break;
             }
-            item.transform.position = Vector3.MoveTowards(item.transform.position, targetPosition, speed * Time.deltaTime);
+            item.transform.position = Vector3.MoveTowards(item.transform.position, this.transform.position, speed * Time.deltaTime);
             yield return null;
         }
     }
@@ -128,5 +150,40 @@ public class MagnetController : MonoBehaviour
 
         GameObject newChomp = Instantiate(this.gameObject, newPosition, Quaternion.identity);
         newChomp.transform.SetParent(parent.transform, true);
+    }
+
+    private void OnDestroy()
+    {
+        ResetPulledList();
+    }
+
+    private void ResetPulledList()
+    {
+        if(pulledItemTag.Length == 0)
+        {
+            return;
+        }
+        if (pulledItemTag == "Dino")
+        {
+            foreach (GameObject dino in pulledItems)
+            {
+                if (dino != null)
+                {
+                    DinoController dc = dino.GetComponent<DinoController>();
+                    dc.SetPull(false);
+                }
+            }
+        }
+        else if(pulledItemTag == "Finn")
+        {
+            foreach (GameObject finn in pulledItems)
+            {
+                if (finn != null)
+                {
+                    FinnController fc = finn.GetComponent<FinnController>();
+                    fc.SetPull(false);
+                }
+            }
+        }
     }
 }

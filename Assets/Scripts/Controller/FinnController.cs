@@ -14,6 +14,7 @@ public class FinnController : MonoBehaviour
     private KeyValuePair<float, float> limitX = new KeyValuePair<float, float>(-6f, -4f), limitY = new KeyValuePair<float, float>(-1.6f, 4f);
     private Animator animator;
     private bool isDragging = false;
+    private bool isPulling = false;
     private bool isMoving = false;
     private bool hasItem = false;
     private float screenLeft, screenRight, lastX;
@@ -44,7 +45,7 @@ public class FinnController : MonoBehaviour
 
     void Update()
     {
-        if (isDragging)
+        if (isDragging || isPulling)
         {
             lastX = transform.position.x;
         }
@@ -220,6 +221,11 @@ public class FinnController : MonoBehaviour
     public void SetDrag(bool check)
     {
         isDragging = check;
+    }
+
+    public void SetPull(bool check)
+    {
+        isPulling = check;
     }
 
     public int GetAteFruits()

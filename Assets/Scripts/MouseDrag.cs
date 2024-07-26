@@ -96,7 +96,7 @@ public class MouseDrag : MonoBehaviour
             isDraggingStatic = true;
             if (dinoController != null)
             {
-                dinoController.IsDragged(true);
+                dinoController.SetDrag(true);
             }
             if (treeController != null)
             {
@@ -191,7 +191,7 @@ public class MouseDrag : MonoBehaviour
         isDraggingStatic = false;
         if (dinoController != null)
         {
-            dinoController.IsDragged(false);
+            dinoController.SetDrag(false);
         }
         if (treeController != null)
         {

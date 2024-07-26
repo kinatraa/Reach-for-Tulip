@@ -238,11 +238,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &201728591 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1498377723087771853, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-  m_PrefabInstance: {fileID: 8395487374893663378}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &238595346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1787,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2252,7 +2247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4614dcfb75ad6d34b91ce8e7ac1534b5, type: 3}
+  m_Sprite: {fileID: 803674117, guid: 46ed5cb976bec044fa80330a7261fbea, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2837,7 +2832,7 @@ MonoBehaviour:
   witchController: {fileID: 3788553784026901492, guid: f89ce9432b551f54980bea1d9522a984, type: 3}
   fountainController: {fileID: 639313396761098483, guid: a339ab905bf9fcd449c27d15252b9905, type: 3}
   tulipController: {fileID: 9190374043808346837, guid: e63d23cc211ad024a9a67767a13360dc, type: 3}
-  magnetController: {fileID: 7721732474697582649, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
+  magnetController: {fileID: 4862524510124647066, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
 --- !u!1 &1511172786
 GameObject:
   m_ObjectHideFlags: 0
@@ -4461,99 +4456,6 @@ MonoBehaviour:
             m_StringArgument: hello
             m_BoolArgument: 0
           m_CallState: 2
---- !u!1001 &8395487374893663378
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 559515393937243383, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202530298432705340, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_Name
-      value: Magnet
-      objectReference: {fileID: 0}
-    - target: {fileID: 1683672954573842995, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1683672954573842995, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1683672954573842995, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 1683672954573842995, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7721732474697582649, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: itemIcon
-      value: 
-      objectReference: {fileID: 201728591}
-    - target: {fileID: 8772807312756092175, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_Size.x
-      value: 0.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8772807312756092175, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_Size.y
-      value: 0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 8772807312756092175, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8772807312756092175, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3cfe70dc54f16e241bae4e477984e1e6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4574,4 +4476,3 @@ SceneRoots:
   - {fileID: 2008854728}
   - {fileID: 747220864}
   - {fileID: 882918356}
-  - {fileID: 8395487374893663378}
