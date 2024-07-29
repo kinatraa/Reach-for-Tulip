@@ -1304,6 +1304,52 @@ MonoBehaviour:
   - {fileID: 6216292893082012554, guid: dadc7c98924ef534aa348ae8373ee9f6, type: 3}
   - {fileID: 4686999600820035433, guid: ddcfb8dafb90c544eb1424716ec71830, type: 3}
   gemOutput: {fileID: 5196614776530911251, guid: e528d5c294f69194bbc40beed7976658, type: 3}
+--- !u!1 &823538954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 823538956}
+  - component: {fileID: 823538955}
+  m_Layer: 0
+  m_Name: StartGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &823538955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823538954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c62605ff21c6443924df5bf5c3c391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeController: {fileID: 5260819035315349050, guid: 2a212f7b3f5b03c44bbd5871f3702f7f, type: 3}
+  dinoManager: {fileID: 809295832}
+--- !u!4 &823538956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823538954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.95981836, y: 0.30402437, z: 412.6643}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882918352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,6 +4506,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 823538956}
   - {fileID: 519420032}
   - {fileID: 809295831}
   - {fileID: 380610202}
