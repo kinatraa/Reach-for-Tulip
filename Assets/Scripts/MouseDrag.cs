@@ -17,6 +17,7 @@ public class MouseDrag : MonoBehaviour
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
+    private bool collideShop = false;
 
     private GameObject hintText;
     private RaycastHit2D hit;
@@ -24,6 +25,8 @@ public class MouseDrag : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private int lastOrder = 0;
+
+    private static bool disableDrag = false;
 
     void Start()
     {
@@ -53,6 +56,12 @@ public class MouseDrag : MonoBehaviour
 
     void Update()
     {
+        /*Debug.Log(disableDrag);*/
+        if (disableDrag)
+        {
+            return;
+        }
+
         /*Debug.Log(hit.collider);*/
         if (isDragging)
         {
@@ -79,11 +88,35 @@ public class MouseDrag : MonoBehaviour
                 MagnetController magnet = collision.GetComponent<MagnetController>();
                 magnet.SetItem(this.gameObject);
             }
+            else if(collision.name == "ShopBackground")
+            {
+                if (this.transform.position.y > -2.2f)
+                {
+                    collideShop = true;
+                }
+                else
+                {
+                    collideShop = false;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.name == "ShopBackground")
+        {
+            collideShop = false;
         }
     }
 
     private void OnMouseDown()
     {
+        if (disableDrag)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             spriteRenderer.sortingOrder = 500;
@@ -185,6 +218,11 @@ public class MouseDrag : MonoBehaviour
 
     public void OnMouseUp()
     {
+        if (disableDrag)
+        {
+            return;
+        }
+
         spriteRenderer.sortingOrder = lastOrder;
         SetSortingOrderForAllChildren(spriteRenderer.transform, lastOrder);
         isDragging = false;
@@ -207,9 +245,17 @@ public class MouseDrag : MonoBehaviour
             hintText.SetActive(false);
         }
 
-        if (this.gameObject.transform.position.y <= -2.2f)
+        if (this.transform.position.y <= -2.2f)
         {
             SellItem();
+        }
+
+        if (collideShop)
+        {
+            Vector3 newPosition = this.transform.position;
+            newPosition.y = -1f;
+            this.transform.position = newPosition;
+            collideShop = false;
         }
     }
 
@@ -233,5 +279,10 @@ public class MouseDrag : MonoBehaviour
     public static bool IsDragging()
     {
         return isDraggingStatic;
+    }
+
+    public static void DisableDrag(bool check)
+    {
+        disableDrag = check;
     }
 }

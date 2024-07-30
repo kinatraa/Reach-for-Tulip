@@ -27,7 +27,6 @@ public class ButtonManager : MonoBehaviour
 
     public void StartGame(){
         sceneController.SetMenu(false);
-        sceneController.SetGame(true);
     }
 
     public void BuyDino()
