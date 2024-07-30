@@ -126,7 +126,7 @@ public class MouseDrag : MonoBehaviour
 
     private void GetHintTextObject()
     {
-        Transform[] allChildren = GameMethods.FindRootGameObject("UI").transform.Find("Text").GetComponentsInChildren<Transform>(true);
+        Transform[] allChildren = GameMethods.FindRootGameObject("UIGame").transform.Find("Text").GetComponentsInChildren<Transform>(true);
         foreach (Transform child in allChildren)
         {
             if (child.name == "Hint")

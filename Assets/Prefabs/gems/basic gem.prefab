@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4873181713127018697}
   m_Layer: 0
   m_Name: basic gem
-  m_TagString: Untagged
+  m_TagString: BasicGem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

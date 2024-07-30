@@ -15,6 +15,7 @@ public class ButtonManager : MonoBehaviour
     public FountainController fountainController;
     public TulipController tulipController;
     public MagnetController magnetController;
+    public StartGame sceneController;
 
     private Transform infoText;
     private Transform descriptionText;
@@ -22,6 +23,11 @@ public class ButtonManager : MonoBehaviour
     void Start() {
         infoText = transform.Find("Info");
         descriptionText = transform.Find("Description");
+    }
+
+    public void StartGame(){
+        sceneController.SetMenu(false);
+        sceneController.SetGame(true);
     }
 
     public void BuyDino()

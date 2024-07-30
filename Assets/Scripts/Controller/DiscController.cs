@@ -21,7 +21,7 @@ public class DiscController : MonoBehaviour
     {
         
         finnObject = this.transform.parent.gameObject;
-        albumObject = GameMethods.FindRootGameObject("Album").transform.Find("openbook").gameObject;
+        albumObject = GameMethods.FindRootGameObject("UIGame").transform.Find("Album").transform.Find("openbook").gameObject;
     }
 
     void Update()
