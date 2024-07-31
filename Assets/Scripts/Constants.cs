@@ -136,7 +136,7 @@ public static class Constants
         public const string blueFlame = "&^#@&#*1&^()";
         public const string disc = "mysterious disc";
         public const string gramophone = "you wanna play music?";
-        public const string witch = "two gems and a blue flame";
+        public const string witch = "two gems and a blue matter";
         public const string fountain = "make the gem shiny";
         public const string magnet = "give me something, i can pull it in";
         public const string loveOrb = "love is forever...";

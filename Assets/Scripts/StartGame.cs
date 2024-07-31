@@ -10,7 +10,7 @@ public class StartGame : MonoBehaviour
     public GameObject game;
 
     private float moveDuration = 0.2f;
-    private float moveDistance = 500f;
+    private float moveDistance = 600f;
     private RectTransform title;
     private GameObject startButton;
 
@@ -55,6 +55,7 @@ public class StartGame : MonoBehaviour
         }
 
         title.anchoredPosition = endPos;
+
         menu.SetActive(false);
         SetGame(true);
     }
