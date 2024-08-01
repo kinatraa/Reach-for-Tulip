@@ -45,8 +45,18 @@ public class DinoController : MonoBehaviour
 
             float randomX = Random.Range(limitX.Key, limitX.Value);
             float randomY = Random.Range(limitY.Key, limitY.Value);
-
             targetPosition = new Vector3(randomX, randomY, 0);
+
+            int randomCheck = Random.Range(0, 3);
+            if (randomCheck != 0)
+            {
+                GameObject fruits = GameMethods.FindRootGameObject("Fruits");
+                Transform[] fruitPos = fruits.GetComponentsInChildren<Transform>();
+                if(fruitPos.Length > 0){
+                    int randFruit = Random.Range(0, fruitPos.Length);
+                    targetPosition = fruitPos[randFruit].position;
+                } 
+            }
 
             isMoving = false;
             animator.SetBool("IsMoving", isMoving);

@@ -6,3 +6,27 @@ magnet (maybe)
 hệ thống tiền
 UI
 
+Sell:
+basic_gem: 5
+gem: 10
+fruit: 3
+dino: 15
+tree: 7
+finn: 15
+magnet: 75
+flower, flame: 4
+orb: 35
+tulip: 30 350
+
+
+
+Buy:
+dino: 15
+tree: 10
+finn: 20
+chomp: 50
+fountain: 70
+witch: 80
+magnet: 100
+tulip: 200
+
