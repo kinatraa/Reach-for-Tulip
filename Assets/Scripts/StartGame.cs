@@ -6,8 +6,10 @@ public class StartGame : MonoBehaviour
 {
     public TreeController treeController;
     public DinoManager dinoManager;
-    public GameObject menu;
+    public GameObject menuStart;
     public GameObject game;
+
+    public GameObject menuGame;
 
     private float moveDuration = 0.2f;
     private float moveDistance = 600f;
@@ -16,10 +18,10 @@ public class StartGame : MonoBehaviour
 
     void Start()
     {
-        title = menu.transform.Find("Image").transform.Find("Title").GetComponent<RectTransform>();
-        startButton = menu.transform.Find("Image").transform.Find("StartButton").gameObject;
+        title = menuStart.transform.Find("Image").transform.Find("Title").GetComponent<RectTransform>();
+        startButton = menuStart.transform.Find("Image").transform.Find("StartButton").gameObject;
 
-        SetMenu(true);
+        SetMenuStart(true);
         SetGame(false);
 
         treeController.BuyTree();
@@ -27,11 +29,11 @@ public class StartGame : MonoBehaviour
         dinoManager.BuyDino();
     }
 
-    public void SetMenu(bool check)
+    public void SetMenuStart(bool check)
     {
         if (check)
         {
-            menu.SetActive(check);
+            menuStart.SetActive(check);
         }
         else
         {
@@ -56,7 +58,7 @@ public class StartGame : MonoBehaviour
 
         title.anchoredPosition = endPos;
 
-        menu.SetActive(false);
+        menuStart.SetActive(false);
         SetGame(true);
     }
 
@@ -64,5 +66,15 @@ public class StartGame : MonoBehaviour
     {
         MouseDrag.DisableDrag(!check);
         game.SetActive(check);
+    }
+
+    public void SetMenuGame(bool check)
+    {
+        MouseDrag.DisableDrag(check);
+        menuGame.SetActive(check);
+    }
+
+    public bool IsMenuGameOpen(){
+        return menuGame.activeSelf;
     }
 }

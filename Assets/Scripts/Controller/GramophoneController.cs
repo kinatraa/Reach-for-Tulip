@@ -9,7 +9,22 @@ public class GramophoneController : MonoBehaviour
     private KeyValuePair<float, float> limitX = new KeyValuePair<float, float>(-8f, 8f), limitY = new KeyValuePair<float, float>(-1.6f, 4f);
     private AudioSource playingSong = null;
     private AudioSource newSong;
-    
+    private float timer = 0f;
+    private float interval = 5f;
+
+    void Update()
+    {
+        if (playingSong != null)
+        {
+            timer += Time.deltaTime;
+            if (timer >= interval)
+            {
+                timer = 0;
+                PlayerManager.money += 2;
+            }
+        }
+    }
+
     public void BuyGramophone()
     {
         float randomX = Random.Range(limitX.Key, limitX.Value);
@@ -21,7 +36,7 @@ public class GramophoneController : MonoBehaviour
 
     public void PlayMusic(int id)
     {
-        if(playingSong != null)
+        if (playingSong != null)
         {
             playingSong.Stop();
         }
@@ -35,6 +50,7 @@ public class GramophoneController : MonoBehaviour
         if (playingSong != null)
         {
             playingSong.Stop();
+            playingSong = null;
             Destroy(newSong.gameObject);
         }
     }

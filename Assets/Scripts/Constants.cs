@@ -95,7 +95,7 @@ public static class Constants
         public const string finn = "What time is it? Adventure time!";
         public const string gramophone = "Music?!";
         public const string witch = "All the fish belong to me!";
-        public const string fountain = "Make a wish and see your dreams come true!";
+        public const string fountain = "Make a wish and see your dreams come true! (Only 1)";
         public const string tulip = "A seed!";
         public const string magnet = "Attraction is my name!";
 

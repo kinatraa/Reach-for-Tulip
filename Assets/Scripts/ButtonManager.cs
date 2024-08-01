@@ -26,7 +26,11 @@ public class ButtonManager : MonoBehaviour
     }
 
     public void StartGame(){
-        sceneController.SetMenu(false);
+        sceneController.SetMenuStart(false);
+    }
+
+    public void OpenMenuGame(){
+        sceneController.SetMenuGame(!sceneController.IsMenuGameOpen());
     }
 
     public void BuyDino()

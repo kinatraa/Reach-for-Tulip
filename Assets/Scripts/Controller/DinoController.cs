@@ -17,7 +17,7 @@ public class DinoController : MonoBehaviour
     private bool isMoving = false;
     private bool isEating = false;
     private bool isDragging = false;
-    private bool isPulling = false; 
+    private bool isPulling = false;
 
     void Start()
     {
@@ -38,10 +38,9 @@ public class DinoController : MonoBehaviour
                 yield return null;
             }
 
-            if (isEating)
+            while (isEating)
             {
-                yield return new WaitForSeconds(Random.Range(Constants.Cooldown.dino.Key, Constants.Cooldown.dino.Value));
-                ResetTrigger();
+                yield return null;
             }
 
             float randomX = Random.Range(limitX.Key, limitX.Value);
@@ -86,12 +85,22 @@ public class DinoController : MonoBehaviour
     public void EatFruit()
     {
         isEating = true;
+        StartCoroutine(NomNomFruit());
+    }
+
+    private IEnumerator NomNomFruit()
+    {
+        animator.SetBool("Bite", isEating);
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Bite"));
         animator.SetBool("IsEating", isEating);
+        yield return new WaitForSeconds(Random.Range(Constants.Cooldown.dino.Key, Constants.Cooldown.dino.Value));
+        ResetTrigger();
     }
 
     public void ResetTrigger()
     {
         isEating = false;
+        animator.SetBool("Bite", isEating);
         animator.SetBool("IsEating", isEating);
         dinoManager.DropGem(this.gameObject);
     }
