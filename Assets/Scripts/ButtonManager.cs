@@ -35,46 +35,92 @@ public class ButtonManager : MonoBehaviour
 
     public void BuyDino()
     {
+        if(PlayerManager.money < Constants.Cost.dino)
+        {
+            return;
+        }
         dinoManager.BuyDino();
+        PlayerManager.money -= Constants.Cost.dino;
     }
 
     public void BuyTree()
     {
+        if (PlayerManager.money < Constants.Cost.tree)
+        {
+            return;
+        }
         treeController.BuyTree();
+        PlayerManager.money -= Constants.Cost.tree;
     }
 
     public void BuyChomp()
     {
+        if (PlayerManager.money < Constants.Cost.chomp)
+        {
+            return;
+        }
         chompController.BuyChomp();
+        PlayerManager.money -= Constants.Cost.chomp;
     }
 
     public void BuyGramophone()
     {
+        if (PlayerManager.money < Constants.Cost.gramophone)
+        {
+            return;
+        }
         gramophoneController.BuyGramophone();
+        PlayerManager.money -= Constants.Cost.gramophone;
     }
 
     public void BuyFinn()
     {
+        if (PlayerManager.money < Constants.Cost.finn)
+        {
+            return;
+        }
         finnController.BuyFinn();
+        PlayerManager.money -= Constants.Cost.finn;
     }
 
     public void BuyWitch()
     {
+        if (PlayerManager.money < Constants.Cost.witch)
+        {
+            return;
+        }
         witchController.BuyWitch();
+        PlayerManager.money -= Constants.Cost.witch;
     }
 
-    public void BuyFountain(){
+    public void BuyFountain()
+    {
+        if (PlayerManager.money < Constants.Cost.fountain)
+        {
+            return;
+        }
         fountainController.BuyFountain();
+        PlayerManager.money -= Constants.Cost.fountain;
     }
 
     public void BuyTulip()
     {
+        if (PlayerManager.money < Constants.Cost.tulip)
+        {
+            return;
+        }
         tulipController.BuyTulip();
+        PlayerManager.money -= Constants.Cost.tulip;
     }
 
     public void BuyMagnet()
     {
+        if (PlayerManager.money < Constants.Cost.magnet)
+        {
+            return;
+        }
         magnetController.BuyMagnet();
+        PlayerManager.money -= Constants.Cost.magnet;
     }
 
     public void InfoDisplay(GameObject button)

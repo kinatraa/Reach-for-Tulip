@@ -30,3 +30,6 @@ witch: 80
 magnet: 100
 tulip: 200
 
+fix lỗi lag khi mở nhạc
+lỗi fruit spawn ra ở shop
+thêm sound setting

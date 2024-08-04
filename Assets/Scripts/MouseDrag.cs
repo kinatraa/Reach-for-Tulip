@@ -20,6 +20,7 @@ public class MouseDrag : MonoBehaviour
     private bool collideShop = false;
 
     private GameObject hintText;
+    private GameObject sellText;
     private RaycastHit2D hit;
     private bool isHitted = false;
 
@@ -51,7 +52,7 @@ public class MouseDrag : MonoBehaviour
             objectHeight = 0.5f;
         }
 
-        GetHintTextObject();
+        GetTextObject();
     }
 
     void Update()
@@ -75,6 +76,14 @@ public class MouseDrag : MonoBehaviour
         }
         if (isHitted && hit.collider != null)
         {
+            if(this.transform.position.y <= -2.2f)
+            {
+                ShowSellInfo();
+            }
+            else
+            {
+                sellText.SetActive(false);
+            }
             ShowHint();
         }
     }
@@ -157,7 +166,7 @@ public class MouseDrag : MonoBehaviour
         }
     }
 
-    private void GetHintTextObject()
+    private void GetTextObject()
     {
         Transform[] allChildren = GameMethods.FindRootGameObject("UIGame").transform.Find("Text").GetComponentsInChildren<Transform>(true);
         foreach (Transform child in allChildren)
@@ -165,9 +174,20 @@ public class MouseDrag : MonoBehaviour
             if (child.name == "Hint")
             {
                 hintText = child.gameObject;
-                break;
+            }
+            if(child.name == "Sell Info")
+            {
+                sellText = child.gameObject;
             }
         }
+    }
+
+    private void ShowSellInfo()
+    {
+        TextMeshProUGUI text = sellText.GetComponent<TextMeshProUGUI>();
+        text.text = "Sell for: " + Constants.Value.GetValue(gameObject).ToString() + "$";
+        
+        sellText.SetActive(true);
     }
 
     private void CheckHit()
@@ -243,6 +263,7 @@ public class MouseDrag : MonoBehaviour
         {
             isHitted = false;
             hintText.SetActive(false);
+            sellText.SetActive(false);
         }
 
         if (this.transform.position.y <= -2.2f)
@@ -261,18 +282,7 @@ public class MouseDrag : MonoBehaviour
 
     private void SellItem()
     {
-        if (gameObject.CompareTag("Dino"))
-        {
-            PlayerManager.money += Constants.Value.GetValue("Dino");
-        }
-        else if (gameObject.CompareTag("Gem"))
-        {
-            PlayerManager.money += Constants.Value.GetValue("Gem");
-        }
-        else
-        {
-            PlayerManager.money += Constants.Value.GetValue(gameObject.name);
-        }
+        PlayerManager.money += Constants.Value.GetValue(gameObject);
         Destroy(gameObject);
     }
 

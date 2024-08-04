@@ -41,6 +41,7 @@ public class GramophoneController : MonoBehaviour
             playingSong.Stop();
         }
         newSong = Instantiate(songs[id], transform);
+
         playingSong = newSong;
         playingSong.Play();
     }

@@ -5,7 +5,7 @@ using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static int money = 0;
+    public static int money = 100;
     public TextMeshProUGUI moneyDisplay;
 
     void Update() {

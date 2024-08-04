@@ -8,14 +8,14 @@ public static class Constants
     public static class Cost
     {
         public const int tree = 10;
-        public const int dino = 10;
+        public const int dino = 15;
         public const int chomp = 50;
-        public const int finn = 50;
+        public const int finn = 20;
         public const int gramophone = 50;
-        public const int witch = 50;
-        public const int fountain = 100;
-        public const int tulip = 1000;
-        public const int magnet = 300;
+        public const int witch = 80;
+        public const int fountain = 70;
+        public const int tulip = 200;
+        public const int magnet = 100;
 
         public static int GetCost(string name){
             switch(name){
@@ -35,7 +35,7 @@ public static class Constants
                     return fountain;
                 case "Tulip":
                     return tulip;
-                case "Magnet Shroom":
+                case "Magnet":
                     return magnet;
             }
             return -1;
@@ -44,20 +44,35 @@ public static class Constants
 
     public static class Value
     {
-        public const int tree = 5;
-        public const int dino = 5;
-        public const int fruit = 5;
-        public const int chomp = 5;
-        public const int finn = 10, gramophone = 10, witch = 10, fountain = 10;
-        public const int gem = 15;
+        public const int tree = 7;
+        public const int dino = 10;
+        public const int fruit = 3;
+        public const int chomp = 35;
+        public const int finn = 15, gramophone = 35, witch = 65, fountain = 55;
+        public const int gem = 10;
         public const int basicGem = 5;
+        public const int flower = 4, flame = 4, disc = 10;
+        public const int magnet = 75;
+        public const int orb = 35;
+        public const int tulip = 30, bigTulip = 350;
 
-        public static int GetValue(string name){
+        public static int GetValue(GameObject obj){
+            if (obj.CompareTag("Dino"))
+            {
+                return dino;
+            }
+            else if (obj.CompareTag("Gem"))
+            {
+                return gem;
+            }
+            else if (obj.CompareTag("Disc"))
+            {
+                return disc;
+            }
+            string name = obj.name;
             switch(name){
                 case "Tree(Clone)":
                     return tree;
-                case "Dino":
-                    return dino;
                 case "Chomp(Clone)":
                     return chomp;
                 case "Finn(Clone)":
@@ -68,10 +83,16 @@ public static class Constants
                     return witch;
                 case "WaterFountain(Clone)":
                     return fountain;
-                case "Gem":
-                    return gem;
                 case "BasicGem(Clone)":
                     return basicGem;
+                case "PinkFlower(Clone)":
+                    return flower;
+                case "flame(Clone)":
+                    return flame;
+                case "Magnet(Clone)":
+                    return magnet;
+                case "Love Orb(Clone)":
+                    return orb;
             }
             return -1;
         }
@@ -93,7 +114,7 @@ public static class Constants
         public const string dino = "Nom nom nom nom nom...";
         public const string chomp = "Auto harvest crops";
         public const string finn = "What time is it? Adventure time!";
-        public const string gramophone = "Music?!";
+        public const string gramophone = "Music?! (Only 1)";
         public const string witch = "All the fish belong to me!";
         public const string fountain = "Make a wish and see your dreams come true! (Only 1)";
         public const string tulip = "A seed!";
