@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class GramophoneController : MonoBehaviour
 {
-    public AudioSource[] songs;
-
+    private AudioSource[] songs;
     private KeyValuePair<float, float> limitX = new KeyValuePair<float, float>(-8f, 8f), limitY = new KeyValuePair<float, float>(-1.6f, 4f);
-    private AudioSource playingSong = null;
-    private AudioSource newSong;
+    private AudioSource playingSong;
     private float timer = 0f;
     private float interval = 5f;
+
+    void Start()
+    {
+        playingSong = GetComponent<AudioSource>();
+        songs = GameMethods.FindRootGameObject("Gramophone").transform.Find("Songs").GetComponentsInChildren<AudioSource>();
+    }
 
     void Update()
     {
@@ -31,28 +35,34 @@ public class GramophoneController : MonoBehaviour
         float randomY = Random.Range(limitY.Key, limitY.Value);
         Vector3 newPosition = new Vector3(randomX, randomY, 0);
 
-        Instantiate(this.gameObject, newPosition, this.gameObject.transform.rotation);
+        GameObject parent = GameObject.Find("Gramophone");
+
+        GameObject newGramophone = Instantiate(this.gameObject, newPosition, this.gameObject.transform.rotation);
+        newGramophone.transform.SetParent(parent.transform, true);
     }
 
     public void PlayMusic(int id)
     {
-        if (playingSong != null)
+        if (playingSong.isPlaying)
         {
             playingSong.Stop();
         }
-        newSong = Instantiate(songs[id], transform);
 
-        playingSong = newSong;
+        playingSong.clip = songs[id].clip;
         playingSong.Play();
     }
 
     public void StopMusic()
     {
-        if (playingSong != null)
+        if (playingSong.isPlaying)
         {
             playingSong.Stop();
-            playingSong = null;
-            Destroy(newSong.gameObject);
+            playingSong.clip = null;
         }
+    }
+
+    public bool HasDisc()
+    {
+        return playingSong.clip != null;
     }
 }

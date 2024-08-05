@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -19,23 +20,42 @@ public class ButtonManager : MonoBehaviour
 
     private Transform infoText;
     private Transform descriptionText;
-    
-    void Start() {
+
+    void Start()
+    {
         infoText = transform.Find("Info");
         descriptionText = transform.Find("Description");
     }
 
-    public void StartGame(){
+    public void StartGame()
+    {
         sceneController.SetMenuStart(false);
     }
 
-    public void OpenMenuGame(){
+    public void OpenMenuGame()
+    {
         sceneController.SetMenuGame(!sceneController.IsMenuGameOpen());
+    }
+
+    public void Resume()
+    {
+        sceneController.SetMenuGame(!sceneController.IsMenuGameOpen());
+    }
+
+    public void OpenSetting()
+    {
+        sceneController.SetSetting(!sceneController.IsSettingOpen());
+    }
+
+    public void Quit()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     public void BuyDino()
     {
-        if(PlayerManager.money < Constants.Cost.dino)
+        if (PlayerManager.money < Constants.Cost.dino)
         {
             return;
         }
@@ -125,7 +145,7 @@ public class ButtonManager : MonoBehaviour
 
     public void InfoDisplay(GameObject button)
     {
-        if(MouseDrag.IsDragging()) return;
+        if (MouseDrag.IsDragging()) return;
 
         string name = button.name;
         TextMeshProUGUI info = infoText.gameObject.GetComponent<TextMeshProUGUI>();
@@ -145,7 +165,7 @@ public class ButtonManager : MonoBehaviour
 
     public void TurnOffInfoDisplay()
     {
-        if(MouseDrag.IsDragging()) return;
+        if (MouseDrag.IsDragging()) return;
 
         infoText.gameObject.SetActive(false);
         descriptionText.gameObject.SetActive(false);

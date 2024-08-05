@@ -71,6 +71,8 @@ public static class Constants
             }
             string name = obj.name;
             switch(name){
+                case "Fruit(Clone)":
+                    return fruit;
                 case "Tree(Clone)":
                     return tree;
                 case "Chomp(Clone)":

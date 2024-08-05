@@ -8,8 +8,8 @@ public class StartGame : MonoBehaviour
     public DinoManager dinoManager;
     public GameObject menuStart;
     public GameObject game;
-
     public GameObject menuGame;
+    public GameObject setting;
 
     private float moveDuration = 0.2f;
     private float moveDistance = 600f;
@@ -70,11 +70,23 @@ public class StartGame : MonoBehaviour
 
     public void SetMenuGame(bool check)
     {
-        MouseDrag.DisableDrag(check);
         menuGame.SetActive(check);
+        SetGame(!check);
     }
 
-    public bool IsMenuGameOpen(){
+    public void SetSetting(bool check)
+    {
+        setting.SetActive(check);
+        menuGame.SetActive(!check);
+    }
+
+    public bool IsSettingOpen()
+    {
+        return setting.activeSelf;
+    }
+
+    public bool IsMenuGameOpen()
+    {
         return menuGame.activeSelf;
     }
 }

@@ -19,18 +19,23 @@ public class DiscController : MonoBehaviour
 
     void Start()
     {
-        
+
         finnObject = this.transform.parent.gameObject;
         albumObject = GameMethods.FindRootGameObject("UIGame").transform.Find("Album").transform.Find("openbook").gameObject;
     }
 
     void Update()
     {
-        if(gramophoneController == null)
+        if (gramophoneController == null)
         {
             if (gramophoneObject == null)
             {
-                gramophoneObject = GameMethods.FindRootGameObject("Gramophone(Clone)");
+                GameObject tmp = GameMethods.FindRootGameObject("Gramophone");
+                if (tmp.transform.childCount == 1)
+                {
+                    return;
+                }
+                gramophoneObject = tmp.transform.Find("Gramophone(Clone)").gameObject;
                 if (gramophoneObject != null)
                 {
                     gramophoneController = gramophoneObject.GetComponent<GramophoneController>();
@@ -47,7 +52,7 @@ public class DiscController : MonoBehaviour
             this.transform.SetParent(finnObject.transform, true);
             inAlbum = false;
         }
-        else if(inGramophone)
+        else if (inGramophone)
         {
             gramophoneController.StopMusic();
             this.transform.SetParent(finnObject.transform, true);
@@ -63,8 +68,13 @@ public class DiscController : MonoBehaviour
             albumController.FillDisc(this.gameObject);
             inAlbum = true;
         }
-        else if(collideGramophone == true)
+        else if (collideGramophone == true)
         {
+            if (gramophoneController.HasDisc())
+            {
+                MoveDiscOut();
+                return;
+            }
             Vector3 discPosition = gramophoneObject.transform.position;
             discPosition.y -= 0.4f;
             this.transform.position = discPosition;
@@ -79,6 +89,49 @@ public class DiscController : MonoBehaviour
 
             inGramophone = true;
         }
+    }
+
+    private void MoveDiscOut()
+    {
+        Collider2D gramophoneCollider = gramophoneObject.GetComponent<Collider2D>();
+        Bounds bounds = gramophoneCollider.bounds;
+
+        Vector3 newPos = transform.position;
+        Vector3 discSize = transform.GetComponent<Collider2D>().bounds.size;
+
+        int direction = Random.Range(0, 8);
+        switch (direction)
+        {
+            case 0: // up
+                newPos.y = bounds.max.y + discSize.y / 2 + 0.1f;
+                break;
+            case 1: // down
+                newPos.y = bounds.min.y - discSize.y / 2 - 0.1f;
+                break;
+            case 2: // left
+                newPos.x = bounds.min.x - discSize.x / 2 - 0.1f;
+                break;
+            case 3: // right
+                newPos.x = bounds.max.x + discSize.x / 2 + 0.1f;
+                break;
+            case 4: // up-left
+                newPos.y = bounds.max.y + discSize.y / 2 + 0.05f;
+                newPos.x = bounds.min.x - discSize.x / 2 - 0.05f;
+                break;
+            case 5: // up-right
+                newPos.y = bounds.max.y + discSize.y / 2 + 0.05f;
+                newPos.x = bounds.max.x + discSize.x / 2 + 0.05f;
+                break;
+            case 6: // down-left
+                newPos.y = bounds.min.y - discSize.y / 2 - 0.05f;
+                newPos.x = bounds.min.x - discSize.x / 2 - 0.05f;
+                break;
+            case 7: // down-right
+                newPos.y = bounds.min.y - discSize.y / 2 - 0.05f;
+                newPos.x = bounds.max.x + discSize.x / 2 + 0.05f;
+                break;
+        }
+        transform.position = newPos;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

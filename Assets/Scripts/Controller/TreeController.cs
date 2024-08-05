@@ -111,6 +111,10 @@ public class TreeController : MonoBehaviour
             GameObject parent = GameObject.Find("Fruits");
 
             Vector3 newPosition = transform.position + new Vector3(Random.Range(-1f, 1f), -1f, 0);
+            if (newPosition.y <= -2.2f)
+            {
+                newPosition.y = -2f;
+            }
 
             GameObject newFruit = Instantiate(fruit, newPosition, Quaternion.identity);
             newFruit.transform.SetParent(parent.transform, true);
