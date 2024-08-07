@@ -15,11 +15,15 @@ public class StartGame : MonoBehaviour
     private float moveDistance = 600f;
     private RectTransform title;
     private GameObject startButton;
+    private GameObject creditsButton;
+    private GameObject quitButton;
 
     void Start()
     {
         title = menuStart.transform.Find("Image").transform.Find("Title").GetComponent<RectTransform>();
         startButton = menuStart.transform.Find("Image").transform.Find("StartButton").gameObject;
+        creditsButton = menuStart.transform.Find("Image").transform.Find("Credits").gameObject;
+        quitButton = menuStart.transform.Find("Image").transform.Find("Quit").gameObject;
 
         SetMenuStart(true);
         SetGame(false);
@@ -44,6 +48,8 @@ public class StartGame : MonoBehaviour
     private IEnumerator MoveMenuUp()
     {
         startButton.SetActive(false);
+        creditsButton.SetActive(false);
+        quitButton.SetActive(false);
 
         Vector2 startPos = title.anchoredPosition;
         Vector2 endPos = startPos + new Vector2(0, moveDistance);
