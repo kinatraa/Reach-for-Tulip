@@ -16,7 +16,7 @@ public class ButtonManager : MonoBehaviour
     public FountainController fountainController;
     public TulipController tulipController;
     public MagnetController magnetController;
-    public StartGame sceneController;
+    public SceneController sceneController;
 
     private Transform infoText;
     private Transform descriptionText;

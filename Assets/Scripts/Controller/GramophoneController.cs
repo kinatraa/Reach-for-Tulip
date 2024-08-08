@@ -49,6 +49,8 @@ public class GramophoneController : MonoBehaviour
         }
 
         playingSong.clip = songs[id].clip;
+        AudioController.playingMusic = playingSong;
+
         playingSong.Play();
     }
 
@@ -58,6 +60,7 @@ public class GramophoneController : MonoBehaviour
         {
             playingSong.Stop();
             playingSong.clip = null;
+            AudioController.playingMusic = null;
         }
     }
 
