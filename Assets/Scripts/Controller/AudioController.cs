@@ -11,6 +11,11 @@ public class AudioController : MonoBehaviour
 
     public static AudioSource playingMusic;
 
+    private void Start()
+    {
+        playingMusic = backgroundMusic;
+    }
+
     void Update()
     {
         musicLevel = musicSlider.value;
@@ -19,6 +24,11 @@ public class AudioController : MonoBehaviour
         if(playingMusic != null)
         {
             playingMusic.volume = musicLevel;
+        }
+        else
+        {
+            playingMusic = backgroundMusic;
+            playingMusic.Play();
         }
         if(buttonClickSound != null)
         {

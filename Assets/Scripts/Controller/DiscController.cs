@@ -21,7 +21,7 @@ public class DiscController : MonoBehaviour
     {
 
         finnObject = this.transform.parent.gameObject;
-        albumObject = GameMethods.FindRootGameObject("UIGame").transform.Find("Album").transform.Find("openbook").gameObject;
+        albumObject = GameMethods.FindRootGameObject("Album").transform.Find("Album").transform.Find("openbook").gameObject;
     }
 
     void Update()
@@ -85,7 +85,7 @@ public class DiscController : MonoBehaviour
             name = name.Substring(0, name.Length - 7);
             int id = int.Parse(name) - 1;
 
-            gramophoneController.PlayMusic(id);
+            gramophoneController.PlayMusic(id, gameObject);
 
             inGramophone = true;
         }

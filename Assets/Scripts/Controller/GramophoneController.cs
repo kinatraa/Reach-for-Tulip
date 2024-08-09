@@ -7,6 +7,7 @@ public class GramophoneController : MonoBehaviour
     private AudioSource[] songs;
     private KeyValuePair<float, float> limitX = new KeyValuePair<float, float>(-8f, 8f), limitY = new KeyValuePair<float, float>(-1.6f, 4f);
     private AudioSource playingSong;
+    private GameObject playingDisc;
     private float timer = 0f;
     private float interval = 5f;
 
@@ -41,14 +42,17 @@ public class GramophoneController : MonoBehaviour
         newGramophone.transform.SetParent(parent.transform, true);
     }
 
-    public void PlayMusic(int id)
+    public void PlayMusic(int id, GameObject d)
     {
         if (playingSong.isPlaying)
         {
             playingSong.Stop();
         }
 
+        playingDisc = d;
         playingSong.clip = songs[id].clip;
+
+        AudioController.playingMusic.Pause();
         AudioController.playingMusic = playingSong;
 
         playingSong.Play();
@@ -56,10 +60,15 @@ public class GramophoneController : MonoBehaviour
 
     public void StopMusic()
     {
+        if(playingSong == null)
+        {
+            return;
+        }
         if (playingSong.isPlaying)
         {
             playingSong.Stop();
             playingSong.clip = null;
+            playingDisc = null;
             AudioController.playingMusic = null;
         }
     }
@@ -67,5 +76,14 @@ public class GramophoneController : MonoBehaviour
     public bool HasDisc()
     {
         return playingSong.clip != null;
+    }
+
+    public void MoveDisc()
+    {
+        playingDisc.transform.SetParent(GameMethods.FindRootGameObject("Finn and his items").transform);
+        
+        Vector3 newPos = playingDisc.transform.position;
+        newPos.y = -2;
+        playingDisc.transform.position = newPos;
     }
 }

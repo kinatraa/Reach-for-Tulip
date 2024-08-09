@@ -283,6 +283,23 @@ public class MouseDrag : MonoBehaviour
     private void SellItem()
     {
         PlayerManager.money += Constants.Value.GetValue(gameObject);
+        if (gameObject.CompareTag("Gramophone"))
+        {
+            GramophoneController gramophone = gameObject.GetComponent<GramophoneController>();
+            gramophone.MoveDisc();
+        }
+        else if (gameObject.CompareTag("Disc"))
+        {
+            string name = gameObject.name;
+            name = name.Substring(12);
+            name = name.Substring(0, name.Length - 7);
+            int id = int.Parse(name) - 1;
+
+            if (!GameMethods.discRemaining.Contains(id))
+            {
+                GameMethods.discRemaining.Add(id);
+            }
+        }
         Destroy(gameObject);
     }
 

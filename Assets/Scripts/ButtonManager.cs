@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -85,6 +86,9 @@ public class ButtonManager : MonoBehaviour
 
     public void BuyGramophone()
     {
+        if(GameMethods.FindRootGameObject("Gramophone").transform.childCount >= 2){
+            return;
+        }
         if (PlayerManager.money < Constants.Cost.gramophone)
         {
             return;
@@ -115,6 +119,10 @@ public class ButtonManager : MonoBehaviour
 
     public void BuyFountain()
     {
+        if (GameMethods.FindRootGameObject("WaterFountain").transform.childCount >= 1)
+        {
+            return;
+        }
         if (PlayerManager.money < Constants.Cost.fountain)
         {
             return;

@@ -69,6 +69,10 @@ public static class Constants
             {
                 return disc;
             }
+            else if (obj.CompareTag("BasicGem"))
+            {
+                return basicGem;
+            }
             string name = obj.name;
             switch(name){
                 case "Fruit(Clone)":
@@ -85,8 +89,6 @@ public static class Constants
                     return witch;
                 case "WaterFountain(Clone)":
                     return fountain;
-                case "BasicGem(Clone)":
-                    return basicGem;
                 case "PinkFlower(Clone)":
                     return flower;
                 case "flame(Clone)":

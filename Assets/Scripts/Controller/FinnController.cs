@@ -23,13 +23,12 @@ public class FinnController : MonoBehaviour
     private GameObject parentObject;
     private int ateFruits = 0;
     private bool isWaiting = true;
-    private List<int> discRemaining = new List<int>();
 
     void Start()
     {
         for(int i = 0; i < musicDiscs.Length; i++)
         {
-            discRemaining.Add(i);
+            GameMethods.discRemaining.Add(i);
         }
 
         if (parentObject == null)
@@ -176,7 +175,7 @@ public class FinnController : MonoBehaviour
 
         int randomNumber;
 
-        if(discRemaining.Count > 0)
+        if(GameMethods.discRemaining.Count > 0)
         {
             randomNumber = Random.Range(0, 100);
         }
@@ -195,9 +194,9 @@ public class FinnController : MonoBehaviour
         }
         else
         {
-            int randomId = Random.Range(0, discRemaining.Count);
-            newItem = Instantiate(musicDiscs[discRemaining[randomId]], newPosition, Quaternion.identity);
-            discRemaining.RemoveAt(randomId);
+            int randomId = Random.Range(0, GameMethods.discRemaining.Count);
+            newItem = Instantiate(musicDiscs[GameMethods.discRemaining[randomId]], newPosition, Quaternion.identity);
+            GameMethods.discRemaining.RemoveAt(randomId);
         }
 
         newItem.transform.SetParent(parentObject.transform, true);

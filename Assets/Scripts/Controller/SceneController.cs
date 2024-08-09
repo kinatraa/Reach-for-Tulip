@@ -7,7 +7,9 @@ public class SceneController : MonoBehaviour
     public TreeController treeController;
     public DinoManager dinoManager;
     public GameObject menuStart;
+    public GameObject shop;
     public GameObject game;
+    public GameObject album;
     public GameObject menuGame;
     public GameObject setting;
 
@@ -72,6 +74,8 @@ public class SceneController : MonoBehaviour
     {
         MouseDrag.DisableDrag(!check);
         game.SetActive(check);
+        shop.SetActive(check);
+        album.SetActive(check);
     }
 
     public void SetMenuGame(bool check)
