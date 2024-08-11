@@ -161,11 +161,24 @@ public class ButtonManager : MonoBehaviour
         TextMeshProUGUI description = descriptionText.gameObject.GetComponent<TextMeshProUGUI>();
         description.text = Constants.Description.GetDescription(name);
 
-        Vector3 newPosition = button.transform.position;
+        /*Vector3 newPosition = button.transform.position;
         newPosition.y += 100;
         infoText.position = newPosition;
         newPosition.y -= 200;
-        descriptionText.position = newPosition;
+        descriptionText.position = newPosition;*/
+
+        RectTransform buttonRect = button.GetComponent<RectTransform>();
+        RectTransform infoRect = infoText.GetComponent<RectTransform>();
+        RectTransform descriptionRect = descriptionText.GetComponent<RectTransform>();
+
+        Vector3 newPosition = buttonRect.anchoredPosition;
+
+        float verticalOffsetInfo = buttonRect.rect.height * 0.75f;
+        float verticalOffsetDescription = buttonRect.rect.height * 0.8f;
+
+        infoRect.anchoredPosition = newPosition + new Vector3(0, verticalOffsetInfo, 0);
+
+        descriptionRect.anchoredPosition = newPosition - new Vector3(0, verticalOffsetDescription, 0);
 
         infoText.gameObject.SetActive(true);
         descriptionText.gameObject.SetActive(true);

@@ -11,7 +11,7 @@ public class FlowerController : MonoBehaviour
     {
         if (inChomp)
         {
-            chompController.ResetChomp();
+            chompController.FeedChomp();
             Destroy(gameObject);
         }
     }

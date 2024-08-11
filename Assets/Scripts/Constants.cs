@@ -51,7 +51,7 @@ public static class Constants
         public const int finn = 15, gramophone = 35, witch = 65, fountain = 55;
         public const int gem = 10;
         public const int basicGem = 5;
-        public const int flower = 4, flame = 4, disc = 10;
+        public const int flower = 7, flame = 7, disc = 10;
         public const int magnet = 75;
         public const int orb = 35;
         public const int tulip = 30, bigTulip = 350;
@@ -72,6 +72,18 @@ public static class Constants
             else if (obj.CompareTag("BasicGem"))
             {
                 return basicGem;
+            }
+            else if (obj.CompareTag("Tulip"))
+            {
+                TulipController t = obj.GetComponent<TulipController>();
+                if (t.IsBig())
+                {
+                    return bigTulip;
+                }
+                else
+                {
+                    return tulip;
+                }
             }
             string name = obj.name;
             switch(name){
@@ -140,7 +152,7 @@ public static class Constants
                     return witch;
                 case "Water Fountain":
                     return fountain;
-                case "Magnet Shroom":
+                case "Magnet":
                     return magnet;
                 case "Tulip":
                     return tulip;
@@ -166,7 +178,7 @@ public static class Constants
         public const string magnet = "give me something, i can pull it in";
         public const string loveOrb = "love is forever...";
         public static string tulip = "my love!";
-        public static string[] tulipHints = { "a seed", "do you love me?", "wait for me", "wait for me", "wait for me", "wait for me", "i love you" };
+        public static string[] tulipHints = { "a seed", "do you love me?", "wait for me", "wait for me", "wait for me", "wait for me", "..." };
 
         public static string GetHint(string name)
         {

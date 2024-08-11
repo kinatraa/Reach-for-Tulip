@@ -9,7 +9,7 @@ public class ChompController : MonoBehaviour
     private GameObject rangeObject;
     private Animator animator;
     private float range;
-    private int cntFruit = 0;
+    private int cntFruit = 10;
     private bool isTired = false;
 
     void Start()
@@ -31,12 +31,11 @@ public class ChompController : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, treePosition) <= range)
         {
-            ++cntFruit;
-            if(cntFruit == 10)
+            --cntFruit;
+            if(cntFruit == 0)
             {
                 SetTired(true);
                 animator.SetBool("IsTired", isTired);
-                cntFruit = 0;
             }
             return true;
         }
@@ -75,9 +74,13 @@ public class ChompController : MonoBehaviour
         rangeObject.SetActive(false);
     }
 
-    public void ResetChomp()
+    public void FeedChomp()
     {
-        cntFruit = 0;
+        cntFruit += 3;
+        if (cntFruit >= 10)
+        {
+            cntFruit = 10;
+        }
         if (isTired)
         {
             isTired = false;

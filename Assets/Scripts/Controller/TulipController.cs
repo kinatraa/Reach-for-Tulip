@@ -10,6 +10,7 @@ public class TulipController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private PolygonCollider2D polygonCollider;
     private bool isLoved = false;
+    private bool isBig = false;
 
     void Start()
     {
@@ -25,6 +26,10 @@ public class TulipController : MonoBehaviour
             spriteRenderer.sprite = tulips[i];
             UpdateCollider();
             Constants.Hint.tulip = Constants.Hint.tulipHints[i];
+            if(i == tulips.Length - 1)
+            {
+                isBig = true;
+            }
             if (i == 1)
             {
                 while (!isLoved)
@@ -61,6 +66,11 @@ public class TulipController : MonoBehaviour
     public bool IsLoved()
     {
         return isLoved;
+    }
+
+    public bool IsBig()
+    {
+        return isBig;
     }
 
     public void BuyTulip()
