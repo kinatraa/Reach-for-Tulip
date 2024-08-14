@@ -12,6 +12,7 @@ public class SceneController : MonoBehaviour
     public GameObject album;
     public GameObject menuGame;
     public GameObject setting;
+    public GameObject tutorial;
 
     private float moveDuration = 0.2f;
     private float moveDistance = 600f;
@@ -67,6 +68,12 @@ public class SceneController : MonoBehaviour
         title.anchoredPosition = endPos;
 
         menuStart.SetActive(false);
+        tutorial.SetActive(true);
+    }
+
+    public void CloseTutorial()
+    {
+        tutorial.SetActive(false);
         SetGame(true);
     }
 

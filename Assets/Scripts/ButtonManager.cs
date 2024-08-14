@@ -48,6 +48,11 @@ public class ButtonManager : MonoBehaviour
         sceneController.SetSetting(!sceneController.IsSettingOpen());
     }
 
+    public void PlayGame()
+    {
+        sceneController.CloseTutorial();
+    }
+
     public void Quit()
     {
         Scene currentScene = SceneManager.GetActiveScene();
