@@ -16,3 +16,19 @@ Feeding dinosaurs
 Making money by selling everything
 
 Take your time to explore all the items in the game to have the best experience!
+
+Reach for Tulip
+Reach for Tulip là game được mình tạo ra trong quá trình luyện tập lập trình game của mình. Game được lấy cảm hứng từ Florp Farming của groveburger với mục tiêu mang lại sự thư giãn cho người chơi. Game thuộc thể loại casual giúp người chơi dễ dàng tiếp cận và giải trí mà không mất quá nhiều thời gian.
+Cách chơi của Reach for Tulip rất đơn giản, bạn chỉ cần lắc cái cây để lấy quả, cho khủng long ăn để kiếm tiền rồi mua những đồ vật khác để có thể dễ dàng kiếm tiền hơn… Các đồ vật trong game sẽ có sự tương tác với nhau và đều có hướng dẫn trong game. Dưới đây sẽ là chức năng cụ thể của từng đồ vật:
+•	Tree: Bạn có thể lắc để lấy quả khi cây ra quả.
+•	Dino: Những chú khủng long chỉ biết ăn và …
+•	Fruit: Thứ đồ ăn duy nhất trong game dành cho tất cả mọi người.
+•	Chomp: Giúp tự động thu hoạch cây nhưng cũng biết mệt.
+•	Finn: Giúp bạn đi kiếm những đồ vật mới.
+•	Water Fountain: Rửa sạch những viên ngọc, làm chúng trở nên sáng bóng.
+•	Gramophone: Đơn giản là một cái máy phát nhạc.
+•	Witch: Giúp bạn tạo ra một một quả cầu phép thuật.
+•	Magnet: Hút đồ vật được chỉ định.
+•	Tulip: Tình yêu của mình dành cho bạn.
+…
+Tuy game vẫn chưa được hoàn thành một cách chỉnh chu nhưng mong mọi người dành chút thời gian trải nghiệm và góp ý cho mình nhé. Cảm ơn mọi người!

@@ -95,7 +95,7 @@ public class TreeController : MonoBehaviour
         foreach (GameObject chompObject in chomps)
         {
             ChompController chomp = chompObject.GetComponent<ChompController>();
-            if (chomp.IsTired()) return;
+            if (chomp.IsTired()) continue;
             if (chomp.IsTreeInRange(transform.position))
             {
                 DropFruit();

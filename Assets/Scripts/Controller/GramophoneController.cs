@@ -19,8 +19,9 @@ public class GramophoneController : MonoBehaviour
 
     void Update()
     {
-        if (playingSong != null)
+        if (playingSong.isPlaying)
         {
+            Debug.Log(playingSong.clip);
             timer += Time.deltaTime;
             if (timer >= interval)
             {
