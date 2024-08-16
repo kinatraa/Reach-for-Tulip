@@ -13,6 +13,7 @@ public class SceneController : MonoBehaviour
     public GameObject menuGame;
     public GameObject setting;
     public GameObject tutorial;
+    public GameObject credit;
 
     private float moveDuration = 0.2f;
     private float moveDistance = 600f;
@@ -105,5 +106,19 @@ public class SceneController : MonoBehaviour
     public bool IsMenuGameOpen()
     {
         return menuGame.activeSelf;
+    }
+
+    public void SetCredit(bool check)
+    {
+        credit.SetActive(check);
+        /*startButton.SetActive(!check);
+        creditsButton.SetActive(!check);
+        quitButton.SetActive(!check);*/
+        menuStart.SetActive(!check);
+    }
+
+    public bool IsCreditOpen()
+    {
+        return credit.activeSelf;
     }
 }

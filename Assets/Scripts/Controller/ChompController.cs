@@ -76,7 +76,7 @@ public class ChompController : MonoBehaviour
 
     public void FeedChomp()
     {
-        cntFruit += 3;
+        cntFruit += 7;
         if (cntFruit >= 10)
         {
             cntFruit = 10;

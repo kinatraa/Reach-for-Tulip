@@ -59,6 +59,16 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void OpenCredit()
+    {
+        sceneController.SetCredit(!sceneController.IsCreditOpen());
+    }
+
     public void BuyDino()
     {
         if (PlayerManager.money < Constants.Cost.dino)
